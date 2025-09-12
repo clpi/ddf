@@ -1,0 +1,319 @@
+set $mod Mod4
+set $alt Mod3
+set $ctrl Mod2
+set $l h
+set $d j
+set $u k
+set $r l
+set $term ghostty
+set $term2 kitty
+set $browser firefox
+set $browser2 qutebrowser
+set $browser3 luakit
+set $menu bemenu-run
+set $rofi rofi
+set $launcher ulauncher
+
+# Everforest colors
+#set $bg0  #2d353b
+#set $bg1  #343f44
+#set $fg   #d3c6aa
+#set $green #a7c080
+#set $blue  #7fbbb3
+#set $yellow #dbbc7f
+#set $gray  #868d80
+
+# Pastel TTY Colors
+#set $bg0    #282828
+#set $bg1    #323232
+#set $fg     #e0e0e0
+#set $green  #b5e8a9
+#set $blue   #a5d8ff
+#set $yellow #ffe6a7
+#set $gray   #a0a0a0
+#set $red    #ff9a9e
+#set $magenta #dda0dd
+#set $cyan   #a3e8e8
+#set $white  #ffffff
+#set $orange #ffbb8a
+
+set $bg0    #282828
+set $bg1    #3c3836
+set $fg     #ebdbb2
+set $green  #b8bb26
+set $blue   #83a598
+set $yellow #fabd2f
+set $gray   #928374
+set $red    #fb4934
+set $magenta #d3869b
+set $cyan   #8ec07c
+set $white  #ebdbb2
+set $orange #fe8019
+exec swayidle -w \
+    timeout 300 'swaylock \
+        --color 2d353b \
+        --inside-color 3a454a \
+        --inside-clear-color 5c6a72 \
+        --inside-ver-color 5a524c \
+        --inside-wrong-color 543a3a \
+        --ring-color 7a8478 \
+        --ring-clear-color a7c080 \
+        --ring-ver-color dbbc7f \
+        --ring-wrong-color e67e80 \
+        --key-hl-color d699b6 \
+        --bs-hl-color e69875 \
+        --separator-color 2d353b \
+        --text-color d3c6aa \
+        --text-clear-color d3c6aa \
+        --text-ver-color d3c6aa \
+        --text-wrong-color d3c6aa \
+        --indicator-radius 100 \
+        --indicator-thickness 10 \
+        --font "Iosevka Nerd Font Mono"' \
+    timeout 600 'swaymsg output "*" power off' \
+    resume 'swaymsg output "*" power on' \
+    before-sleep 'swaylock -f -c 000000'
+font pango:ZedMono Nerd Font 7
+client.focused $blue $bg1 $fg $cyan $blue
+client.unfocused $bg0 $bg1 $gray $bg0 $bg1
+client.urgent $yellow $bg1 $fg $yellow $yellow
+titlebar_border_thickness 1
+exec emacs --daemon
+exec autotiling -l 2
+exec flameshot
+gaps inner 1
+gaps outer 1
+default_border pixel 1
+titlebar_padding 4 1
+for_window [app_id="ulauncher"] floating enable
+output * bg /run/current-system/sw/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+  floating_modifier $mod normal
+
+input type:keyboard {
+  xkb_capslock disabled
+	repeat_delay 300
+	repeat_rate 30
+}
+input type:touchpad {
+	tap enabled
+	natural_scroll enabled
+}
+bindsym {
+    $mod+Return exec kitty
+    $mod+Alt+Return exec kitty
+    $mod+comma workspace prev
+    $mod+period workspace next
+    $mod+Shift+comma move workspace prev
+    $mod+Shift+period move workspace next
+    $mod+o exec foot
+    $mod+p exec yofi
+    $mod+a exec fuzzel
+    $mod+c exec qutebrowser
+    $mod+e exec zed
+    $mod+n exec nautilus
+    # $mod+r exec qutebrowser
+    $mod+v exec firefox
+    $mod+x exec chromium
+    $mod+y exec brave
+    $mod+z exec vimb
+    $mod+g exec ghostty
+    $mod+q kill
+    $mod+d exec bemenu-run
+    $mod+f exec fuzzel
+    $mod+Shift+d exec dmenu
+    $mod+Shift+Return exec qutebrowser
+    $mod+b exec luakit
+    $mod+Control+Return exec luakit
+    $mod+m exec kitty
+    $mod+u exec ulauncher
+    $mod+Shift+r reload
+    $mod+Shift+e swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+    $mod+$l focus left
+    $mod+$d focus down
+    $mod+$u focus up
+    $mod+$r focus right
+    $mod+Left focus left
+    $mod+Down focus down
+    $mod+Up focus up
+    $mod+Right focus right
+    $mod+Shift+$l move left
+    $mod+Shift+$d move down
+    $mod+Shift+$u move up
+    $mod+Shift+$r move right
+    $mod+Control+$l resize shrink width 10px
+    $mod+Control+$d resize grow height 10px
+    $mod+Control+$u resize shrink height 10pxl
+    $mod+Control+$r resize grow width 10px
+    $mod+Shift+Left move left
+    $mod+Shift+Down move down
+    $mod+Shift+Up move up
+    $mod+Shift+Right move right
+    $mod+Tab workspace next
+    $mod+Shift+Tab workspace prev
+    $mod+1 workspace number 1
+    $mod+2 workspace number 2
+    $mod+3 workspace number 3
+    $mod+4 workspace number 4
+    $mod+5 workspace number 5
+    $mod+6 workspace number 6
+    $mod+7 workspace number 7
+    $mod+8 workspace number 8
+    $mod+9 workspace number 9
+    $mod+0 workspace number 10
+    $mod+Shift+1 move container to workspace number 1
+    $mod+Shift+2 move container to workspace number 2
+    $mod+Shift+3 move container to workspace number 3
+    $mod+Shift+4 move container to workspace number 4
+    $mod+Shift+5 move container to workspace number 5
+    $mod+Shift+6 move container to workspace number 6
+    $mod+Shift+7 move container to workspace number 7
+    $mod+Shift+8 move container to workspace number 8
+    $mod+Shift+9 move container to workspace number 9
+    $mod+Shift+0 move container to workspace number 10
+    $mod+minus splith
+    # $mod+= splitv
+    # $mod+Shift+equals splitv
+    $mod+Shift+minus splitv
+    $mod+Shift+f fullscreen
+    $mod+Shift+space floating toggle
+    $mod+Shift+m focus mode_toggle
+    $mod+Shift+p focus parent
+    $mod+Shift+n move scratchpad
+    $mod+Shift+s scratchpad show
+    $mod+Shift+i reload
+    $mod+r mode "resize"
+    $mod+s mode "layout"
+    $mod+semicolon exec fuzzel
+    $mod+Shift+semicolon exec ulauncher
+    Print exec grim
+}
+
+mode "resize" {
+    bindsym {
+      $l resize shrink width 10px
+      $d resize grow height 10px
+      $u resize shrink height 10pxl
+      $r resize grow width 10px
+      Shift+$l resize shrink width 15px
+      Shift+$d resize grow height 15px
+      Shift+$u resize shrink height 15pxl
+      Shift+$r resize grow width 15px
+      Control+$l resize shrink width 5px
+      Control+$d resize grow height 5px
+      Control+$u resize shrink height 5pxl
+      Control+$r resize grow width 5px
+      Left resize shrink width 10px
+      Down resize grow height 10px
+      Up resize shrink height 10px
+      Right resize grow width 10px
+      Return mode "default"
+      Escape mode "default"
+    }
+}
+mode "select" {
+  bindsym {
+    s layout stacking
+    t layout tabbed
+    p layout split
+    Tab layout toggle split
+    Shift+Tab layout toggle tabbed
+    Shift+p layout toggle split
+    Shift+t layout toggle tabbed
+    Shift+s layout toggle stacking
+    f fullscreen
+    Shift+f floating toggle
+    m focus mode_toggle
+    a focus parent
+    space move scratchpad
+    n scratchpad show
+    Return mode "default"
+    Escape mode "default"
+  }
+}
+mode "layout" {
+  bindsym {
+    s layout stacking
+    t layout tabbed
+    p layout split
+    Tab layout toggle split
+    Shift+Tab layout toggle tabbed
+    Shift+p layout toggle split
+    Shift+t layout toggle tabbed
+    Shift+s layout toggle stacking
+    f fullscreen
+    Shift+f floating toggle
+    m focus mode_toggle
+    a focus parent
+    space move scratchpad
+    n scratchpad show
+    Return mode "default"
+    Escape mode "default"
+  }
+}
+bindsym --locked {
+  # XF86AudioMute exec pactl set-sink-mute \@DEFAULT_SINK@ toggle
+  # XF86AudioLowerVolume exec pactl set-sink-volume \@DEFAULT_SINK@ -5%
+  # XF86AudioRaiseVolume exec pactl set-sink-volume \@DEFAULT_SINK@ +5%
+  # XF86AudioMicMute exec pactl set-source-mute \@DEFAULT_SOURCE@ toggle
+  # # Special keys to adjust brightness via brightnessctl
+  # XF86MonBrightnessDown exec brightnessctl set 5%-
+  # XF86MonBrightnessUp exec brightnessctl set 5%+
+
+  XF86MonBrightnessDown exec light -U 10
+  XF86MonBrightnessUp exec light -A 10
+
+# Volume
+  XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
+  XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
+  Shift+XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +1%'
+  Shift+XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -1%'
+  XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
+  XF86AudioPlay exec playerctl play-pause
+  XF86AudioPause exec playerctl play-pause
+  XF86AudioNext exec playerctl next
+  XF86AudioPrev exec playerctl previous
+  XF86AudioStop exec playerctl stop
+  XF86Search exec bemenu-run
+}
+#
+# Utilities:
+#
+    # Special keys to adjust volume via PulseAudio
+    # Special key to take a screenshot with grim
+
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+# bar {
+#     position bottom
+#
+#     # When the status_command prints a new line to stdout, swaybar updates.
+#     # The default just shows the current date and time.
+#     status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+#
+#     colors {
+#         statusline #ffffff
+#         background #323232
+#         inactive_workspace #32323200 #32323200 #5c5c5c
+#     }
+# }
+
+# include /etc/sway/config.d/*
+# for_window [sh]
+xwayland disable
+bar {
+
+  position top
+  # swaybar_command waybar
+  # status_command nwg-dock
+	# status_command waybar
+}
+# Brightness
+
+# bindsym --to-code {
+# 	$mod+h focus left
+# 	$mod+j focus down
+# 	$mod+k focus up
+# 	$mod+l focus right
+# }
