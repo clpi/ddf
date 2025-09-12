@@ -255,6 +255,102 @@ environment.sessionVariables = {
 	neovim
 	zeal
 	kakoune
+	k9s
+	broot
+	nnn
+	fff
+	aerc
+	elinks
+	w3m
+	lynx
+	weechat
+	toot
+	irssi
+	tuisky
+	mqttui
+	# nmtui
+	# diskonaut
+	lazyjj
+	jj
+	jrnl
+	termshark
+	ncdu
+	yt-dlp
+	abook
+	calcurse
+	navi
+	bombadillo
+	goaccess
+	superfile
+	duf
+	gh-dash
+	ly
+	trippy
+	spotify-player
+	viddy
+	watchexec
+	television
+	discordo
+	dooit
+	pspg
+	circumflex
+	gollama
+	rmpc
+	systeroid
+	# gonzo
+	sig
+	# lstr
+	fm
+	sshs
+	binsider
+	atac
+	dblab
+	flow
+	serie
+	jjui
+	# jira-cli
+	orbiton
+	hwatch
+	stu
+	# elia
+	ad
+	tenere
+	cargo
+	sttr
+	bluetuith
+	nchat
+	# kftray
+	turbo
+	oxker
+	cargo-zigbuild
+	cargo-c
+	gitu
+	smenu
+	jqp
+	# oryx
+	procs
+	lsd
+	eza
+	process-compose
+	ov
+	impala
+	# lazyssh
+	bat
+	# cir
+	zx
+	khal
+	sc-im
+	termscp
+	zellij
+	taskwarrior
+	taskwarrior-tui
+	browsh
+	haxor-news
+	newsboat
+	termusic
+	cmus
+	s-tui
+	visidata
 	qutebrowser
 	luakit
 	vis
@@ -271,7 +367,14 @@ environment.sessionVariables = {
 	devhelp
 	podman-tui
 	docker-compose
+	glances
+	ctop
+	skopeo
+	buildah
 	podman-compose
+	jq
+	yq
+	fx
 	podman-desktop
 	gpg-tui
 	biblioteca
@@ -289,17 +392,41 @@ environment.sessionVariables = {
 	parinfer-rust
 	ghex
 	lapce
+	xplr
+	gobang
+	oha
 	micro
 	inspector
+	yazi
 	thunderbird
 	lollypop
+	codex
 	proton-pass
 	ncspot
 	foliate
+	uv
+	mise
+	bun
+	deno
+	zig
+	mycli
+	opencode
+	wezterm
+	nim
 	seabird
 	lagrange
+	dive
+	pgcli
 	fractal
 	seahorse
+	posting
+	himalaya
+	gping
+	meli
+	alpine
+	mutt
+	neomutt
+	wtfutil
 	obsidian
 	gnome-podcasts
 	gnome-feeds
