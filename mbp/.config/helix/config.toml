@@ -1,0 +1,622 @@
+# NOTE: Chris Pecunies Helix
+
+#   WARN: @m @s to surround @cWORD
+#   TIP: @m @s to surround @cWORD, then must press @m @s again
+#   XXX:
+#   HINT: @m @s to surround @cWORD, but canjt work @m @s again
+#   INFO: Still some cool stuff, like @m @r to replace?
+#   ERROR: There still seems to be some errors
+
+# theme = "gruvbox_dark_hard"
+# theme = "horizon-dark"
+theme = "catppuccin_mocha"
+
+[editor]
+completion-timeout=0
+scrolloff = 5
+end-of-line-diagnostics="error"
+true-color = true
+bufferline = "always"
+rulers = []
+scroll-lines = 3
+mouse = true
+middle-click-paste = true
+shell = ["zsh", "-c"]
+line-number = "relative"   #absolute
+cursorline = true
+cursorcolumn = false
+auto-completion = true
+preview-completion-insert = true
+auto-info = true
+completion-trigger-len = 1
+# popup-border = "none"
+# indent-heuristic = jtree-sitter'
+completion-replace = false
+undercurl = true
+auto-format = true
+color-modes = true
+text-width = 800
+idle-timeout = 0
+
+insert-final-newline = true
+# indent-heuristic = "hybrid"
+popup-border = "none" # "popyp" "menu" "all" "none"
+default-line-ending = "native"
+# workspace-lsp-roots = [
+#   
+# ]
+
+
+[editor.gutters]
+layout = ["diff", "diagnostics", "line-numbers", "spacer"]
+
+[editor.gutters.line-numbers]
+min-width = 1
+
+[editor.search]
+wrap-around = true
+# smart-case = true
+
+[editor.whitespace]
+render = "none"
+
+[editor.indent-guides]
+render = true
+character = "▏" # Some characters that work well: "▏", "┆", "┊", "⸽"
+skip-levels = 1
+
+[editor.soft-wrap]
+enable = true
+max-wrap = 25         # increase value to reduce forced mid-word wrapping
+max-indent-retain = 0
+wrap-indicator = ""   # set wrap-indicator to "" to hide it
+
+[editor.smart-tab]
+enable = true
+supersede-menu = false
+# smart-case = true
+
+[editor.inline-diagnostics]
+cursor-line = "hint"
+other-lines = "error"
+prefix-len = 1
+max-wrap = 20
+max-diagnostics = 10
+
+# [editor.gutters.line-numbers]
+# min-w\idth = 1
+
+[editor.lsp]
+enable = true
+display-inlay-hints = true
+display-messages = true
+auto-signature-help = true
+display-signature-help-docs = true
+goto-reference-include-declaration = true
+snippets = true
+
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+"'" = "'"
+# '`' = '`'
+# '<' = '>'
+
+[editor.statusline]
+left = [
+  "mode",
+  "file-name",
+  # "file-base-name",
+  "file-modification-indicator",
+  "read-only-indicator",
+  # "separator",
+  "file-type",
+  "register",
+  "version-control",
+  "spinner",
+]
+center = [
+"diagnostics", 
+"spacer",
+"workspace-diagnostics"]
+right = [
+  "selections",
+  "primary-selection-length",
+  "separator",
+  "position",
+  "spacer",
+  "position-percentage",
+  "spacer",
+  "separator",
+  "total-line-numbers",
+  "spinner",
+  "file-encoding",
+  "file-line-ending",
+  # "file-absolute-path",
+  "file-type",
+  "mode",
+]
+separator = " "
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+
+# [editor.auto-save]
+# focus-lost = true
+# after-delay.timeout = 3000
+# after-delay.enable = true
+
+[editor.file-picker]
+hidden = false
+parents = true
+ignore = true
+git-ignore = true
+
+git-global = true
+git-exclude = true
+# max-depth = "None"
+
+
+# At most one section each of 'keys.normal', 'keys.insert' and 'keys.select'
+
+# [keys.normal]
+# g = { "ret" = "code_action" } # Maps `ga` to show possible code actions
+# "minus" = { "minus" = ":hspuit", "plus" = ":vsplit"}
+# H = { c = ":open ~/.config/helix/config.toml", l = ":open ~/.config/helix/languages.toml"}
+# "ret" = ["open_below", "normal_mode"] # Maps the enter key to open_below then re-enter normal mode
+# "plus" = [":open ~/.vimrc"]
+# "tab" = ["goto_next_diag"]
+# "s-tab" = ["goto_prev_diag"]
+[keys.normal]
+Cmd-s = ":write"
+esc = ["collapse_selection", "keep_primary_selection" ]
+# G = "goto_file_end"
+C-e = ["align_view_bottom", "move_line_down" ]
+C-y = ["align_view_top", "move_line_up" ]
+"`" = ["select_references_to_symbol_under_cursor"]
+"K" = ["hover"]
+"A-," = "goto_previous_buffer"
+"A-." = "goto_next_buffer"
+"C-w" = ":buffer-close"
+"C-r" = "repeat_last_motion"
+"C-S-p" = ["command_palette"]
+"ret" = [
+  "open_below",
+  "normal_mode",
+] # Maps the enter key to open_below then re-enter normal mode
+"0" = [ 'normal_mode', 'goto_first_nonwhitespace']
+"S-0" = [ 'collapse_selection', 'select_mode', 'goto_first_nonwhitespace']
+"C-0" = [ 'collapse_selection', 'select_mode', 'goto_first_nonwhitespace']
+"A-0" = [ 'collapse_selection', 'select_mode', 'goto_first_nonwhitespace']
+"C-S-0" = [ 'collapse_selection', 'select_mode', 'goto_first_nonwhitespace']
+"9" = [ "normal_mode", "goto_line_end"]
+"S-9" = [ 'collapse_selection', 'select_mode', "extend_to_line_end",]
+"C-9" = [ 'collapse_selection', 'select_mode', "extend_to_line_end",]
+"A-9" = [ 'collapse_selection', 'select_mode', "extend_to_line_end",]
+"C-S-9" = [ 'collapse_selection', 'select_mode', "extend_to_line_end",]
+"=" = []
+
+
+"S-ret" = ["command_palette"] # TODO
+"P" = "extend_line_above"
+"C-ret" = ["command_palette"] # TODO
+"C-S-ret" = ["command_palette"] # TODO
+"S-backspace" = [":sh ls"] # WORKS
+"C-S-backspace" = [":sh echo 'WHOOOOO'"] # WORKS
+C-S-s = ":w" # Maps the Control-s to the typable command :w which is an alias for :write (save file)
+";" = ["command_mode"]
+"<" = []
+">" = []
+"{" = ["goto_first_diag"]
+"}" = ["goto_last_diag"]
+")" = ["goto_next_buffer"]
+"(" = ["goto_previous_buffer"]
+"H" = ["goto_previous_buffer"]
+"L" = ["goto_next_buffer"]
+
+"C-k" = ["jump_view_up"]
+"C-h" = ["jump_view_left"]
+"C-l" = ["jump_view_right"]
+"C-j" = ["jump_view_down"]
+
+# "C-h" = ["hover"]
+"X" = ["extend_line_up", "extend_to_line_bounds"]
+"V" = ["extend_to_line_bounds"]
+"B" = ["no_op"]
+
+"S-tab" = ["goto_prev_diag"]
+"tab" = ["goto_next_diag"]
+
+"S-h" = [":buffer-previous"]
+"S-l" = [":buffer-next"]
+"S-space" = ["command_palette"]
+
+# "gt" = "buffer_next"
+# "lt" = "buffer_prev"
+# "enter" = ["select_references_to_symbol_under_cursor"]
+
+[keys.normal."C-space"]
+C-space = ["command_palette"]
+
+[keys.normal.'t']
+# "S" = ["tree-sitter-scopes"]
+# "h" = ["tree-sitter-highlight-name"]
+# "s" = ["tree-sitter-subtree-name"]
+
+[keys.normal.minus]
+h = ["hover"]
+a = ["code_action"]
+s = ["symbol_picker"]
+S = ["workspace_symbol_picker"]
+d = ["diagnostics_picker"]
+D = ["workspace_diagnostics_picker"]
+';' = ["command_palette"]
+b = ["buffer_picker"]
+j = ["jumplist_picker"]
+l = [":lsp-workspace-command"]
+f = ["file_picker"]
+F = ["file_picker_in_current_directory"]
+"." = ["file_picker_in_current_buffer_directory"]
+backspace = ["last_picker"]
+"S-tab" = ["goto_prev_diag"]
+"tab" = ["goto_next_diag"]
+'c' = [":lsp-workspace-command"]
+minus = ["changed_file_picker"]
+"g" = ["changed_file_picker"]
+"y" = ["workspace_symbol_picker"]
+"C-d" = ["diagnostics_picker"]
+"C-S-d" = ["workspace_diagnostics_picker"]
+r = ["rename_symbol"]
+")" = ["goto_next_function"]
+"(" = ["goto_prev_function"]
+"[" = ["goto_prev_class"]
+"]" = ["goto_next_class"]
+"{" = ["goto_prev_parameter"]
+"/" = ["goto_next_test"]
+"S-/" = ["goto_prev_test"]
+"p" = ["goto_next_paragraph"]
+"P" = ["goto_prev_paragraph"]
+"ret" = ["goto_next_change"]
+"S-ret" = ["goto_prev_change"]
+"t" = ["goto_next_test"]
+"S-t" = ["goto_prev_test"]
+"C-backspace" = ["goto_first_diag"]
+"C-S-backspace" = ["goto_last_diag"]
+
+
+[keys.normal."space"]
+"C-space" = ["completion"]
+"S-c" = [":buffer-close"]
+"S-d" = [":redraw"]
+"S-r" = ["rename_symbol"]
+"S-w" = [":write-all!"]
+"S-q" = [":write-quit-all!"]
+"backspace" = ["last_picker"]
+"S-backspace" = ["goto_last_accessed_file"]
+")" = ["goto_next_function"]
+"(" = ["goto_prev_function"]
+"[" = ["goto_prev_class"]
+"]" = ["goto_next_class"]
+"{" = ["goto_prev_parameter"]
+"t" = ["goto_next_test"]
+"T" = ["goto_prev_test"]
+"p" = ["goto_next_paragraph"]
+"P" = ["goto_prev_paragraph"]
+"c" = ["goto_next_change"]
+"C" = ["goto_prev_change"]
+";" = ["command_palette"]
+":" = ["command_palette"]
+"/" = ["global_search"]
+"?" = ["rename_symbol"]
+"*" = ["changed_file_picker"]
+"minus" = "hsplit"
+"_" = "vsplit"
+"=" = "vsplit"
+"+" = "hsplit"
+"\\" = "hsplit"
+"|" = "vsplit"
+"'" = "vsplit"
+"\"" = "hsplit"
+q = ":quit"
+Q = ":quit!"
+W = ":write-quit!"
+A = ":write-quit-all!"
+"space" = [":lsp-workspace-command"]
+"S-space" = ["command_palette"]
+a = "code_action"
+b = "buffer_picker"
+l = [":lsp-workspace-command"]
+f = ["file_picker"]
+F = ["file_picker_in_current_directory"]
+"." = ["file_picker_in_current_directory"]
+j = "jumplist_picker"
+"g" = ["changed_file_picker"]
+"S" = ["workspace_symbol_picker"]
+"d" = ["diagnostics_picker"]
+"D" = ["workspace_diagnostics_picker"]
+
+"C-k" = ["jump_view_up"]
+"C-h" = ["jump_view_left"]
+"C-l" = ["jump_view_right"]
+"C-j" = ["jump_view_down"]
+
+"C-S-k" = ["jump_view_up"]
+"C-S-h" = ["jump_view_left"]
+"C-S-l" = ["jump_view_right"]
+"C-S-j" = ["jump_view_down"]
+  
+[keys.normal.space.s]
+h = ["hover"]
+a = ["code_action"]
+s = ["symbol_picker"]
+S = ["workspace_symbol_picker"]
+d = ["diagnostics_picker"]
+D = ["workspace_diagnostics_picker"]
+c = ["command_palette"]
+C = ["select_references_to_symbol_under_cursor"]
+b = ["buffer_picker"]
+j = ["jumplist_picker"]
+l = [":lsp-workspace-command"]
+f = ["file_picker"]
+F = ["file_picker_in_current_directory"]
+"." = ["file_picker_in_current_buffer_directory"]
+backspace = ["last_picker"]
+
+
+# "C-S-esc" = "extend_line" # Maps Control-Shift-Escape to extend_line
+[keys.normal."C-c"]
+"C-c" = ["hover"]
+
+[keys.normal."C-s"]
+"C-s" = ["hover"]
+
+[keys.normal."C-b"]
+"C-c" = ["hover"]
+
+[keys.normal."C-x"]
+"C-c" = ["hover"]
+"C-x" = ["wclose"]
+"C-o" = ["wonly"]
+
+[keys.normal."C-v"]
+"C-c" = ["hover"]
+
+[keys.normal.'s']
+r = ["select_references_to_symbol_under_cursor"]
+
+
+[keys.normal.","]
+s = [":tree-sitter-scopes"]
+t = [":tree-sitter-subtree"]
+n = [":tree-sitter-highlight-name"]
+C = [":config-open"]
+L = [":o ~/.config/helix/languages.toml"]
+R = [":config-reload"]
+o = ":config-open"
+W = ":config-open-workspace"
+l = ":log-open"
+r = ":config-reload"
+D = ":redraw"
+"," = ["hover"]
+"." = ["code_action"]
+"space" = ["select_references_to_symbol_under_cursor"]
+"tab" = ["goto_next_diag"]
+"S-tab" = ["goto_prev_diag"]
+
+"C-k" = ["jump_view_up"]
+"C-h" = ["jump_view_left"]
+"C-l" = ["jump_view_right"]
+"C-j" = ["jump_view_down"]
+
+"C-S-k" = ["jump_view_up"]
+"C-S-h" = ["jump_view_left"]
+"C-S-l" = ["jump_view_right"]
+"C-S-j" = ["jump_view_down"]
+
+"minus" = [":hsplit-new"]
+"_" = [":vsplit-new"]
+"u" = [":update"]
+"p" = [":pwd"]
+"O" = [":sort"]
+# "S" = [":rsort"]
+"F" = [":reflow"]
+"/" = ["global_search"]
+"d" = [":dbg"]
+"e" = [":debug-eval"]
+
+[keys.normal."v"]
+"k" = ["half_page_down"]
+"j" = ["half_page_up"]
+"K" = ["page_up"]
+"J" = ["page_down"]
+"C-j" = ["align_view_bottom"]
+"C-k" = ["align_view_top"]
+"c" = ["align_view_center"]
+"m" = ["align_view_middle"]
+
+# NOTE: Wiki command
+[keys.normal."\\"]
+"\\" = ["rotate_view"]
+"." = [":lat"]
+"," = [":ear"]
+"f" = [":fmt"]
+"n" = [":new"]
+
+[keys.normal.g]
+"ret" = ["goto_file_start"]
+G = ["goto_file_end"]
+d = ["goto_definition"]
+D = ["goto_type_definition"]
+y = ["goto_type_definition"]
+"i" = ["goto_implementation"]
+"r" = ["goto_reference"]
+
+
+[keys.normal.g.c]
+c = ["toggle_comments"]
+# C = ["toggle_block_commands"]
+l = ["toggle_line_comments"]
+
+
+[keys.normal.","."g"]
+a = ["code_action"]
+p = ["align_view_middle"]
+h = ["hover"]
+d = [":change-current-directory ~/.config"]
+c = [":change-current-directory ~/.config/helix"]
+
+[keys.select."g"]
+"c" = ["toggle_comments"]
+
+[keys.insert]
+C-a = ["insert_at_line_start"]
+C-e = ["insert_at_line_end"]
+C-f = ["move_char_right"]
+C-b = ["move_char_left"]
+# C-k = ["move_line_up","align_view_center"]
+# C-j = ["move_line_down","align_view_center"]
+C-d = ["half_page_down", "goto_window_center"]
+C-u = ["half_page_up", "goto_window_center"]
+C-y = [
+  "move_prev_word_start",  "trim_selections",  ":pipe ~/.config/helix/cnippet",
+  ":insert-output echo _1_", "search_selection", "delete_selection", "search_next", "delete_selection",
+  ":insert-output echo ___",  "search_selection",  "delete_selection", "insert_mode"
+]
+"C-c" = [":lsp-workspace-command"]
+"C-space" = ["completion"]
+"S-space" = ["command_palette"]
+"C-;" = ["normal_mode", "command_mode"]
+"C-S-;" = ["normal_mode", "command_palette"]
+"C-z" = ["hover"]
+"C-x" = ["code_action"]
+
+"C-k" = ["jump_view_up"]
+"C-h" = ["jump_view_left"]
+"C-l" = ["jump_view_right"]
+"C-j" = ["jump_view_down"]
+
+"C-S-k" = ["jump_view_up"]
+"C-S-h" = ["jump_view_left"]
+"C-S-l" = ["jump_view_right"]
+"C-S-j" = ["jump_view_down"]
+
+"S-esc" = ["no_op"]
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+pageup = "no_op"
+pagedown = "no_op"
+home = "no_op"
+end = "no_op"
+"A-x" = ["normal_mode", "command_palette"]   # Maps Alt-X to enter normal mode
+# j = { k = "normal_mode" } # Maps `jk` to exit insert mode
+# k = { j = "normal_mode" } # Maps `jk` to exit insert mode
+
+[keys.normal."C"]
+m = ":run-shell-command make"
+j = ":run-shell-command just"
+
+[keys.normal."+"]
+m = ":run-shell-command make"
+j = ":run-shell-command just"
+
+[keys.normal."+".c]
+b = ":run-shell-command cargo build"
+t = ":run-shell-command cargo test"
+r = ":run-shell-command cargo run"
+R = ":run-shell-command cargo run --release"
+c = ":run-shell-command cargo check"
+l = ":run-shell-command cargo clean"
+
+# [keys.normal.space]
+# "ret" = "shell_pipe"
+# C = ":open ~/.config/helix/config.toml" 
+
+# "semicolon" = "command"
+
+[keys.normal.space.h]
+d = ":cd ~/.config/helix"
+D = [":cd ~/.config/helix", "file_picker_in_current_directory"]
+z = ":open ~/.zshrc"
+f = ":open ~/.config/fish/config.fish"
+l = ":o ~/.config/helix/languages.toml"
+b = ":open ~/.bashrc"
+C-n = ":open ~/.config/nushell/config.nu"
+p = ":o ~/.profile"
+P = ":o ~/.zprofile"
+e = ":o ~/.zshenv"
+T = ":open ~/.config/wezterm/wezterm.lua"
+s = ":open ~/.config/starship.toml"
+k = ":open ~/.config/kitty/kitty.conf"
+a = ":open ~/.config/alacritty/alacritty.toml"
+E = ":open ~/.config/elvish/rc.elv"
+C-o = ":open ~/.config/helix/config.toml"      # Maps the Control-o to opening of the helix config file
+V = ":open ~/.vimrc"
+i = ":open ~/.ideavimrc"
+c = ":open ~/.config/helix/config.toml"
+L = ":open ~/.config/lvim/config.lua"
+n = ":open ~/.config/nvim/init.lua"
+t = ":open ~/.config/tmux/tmux.conf"
+v = ":open ~/.config/vnim/init.lua"
+r = ":reload"
+o = ":config-open"
+w = ":config-open-workspace"
+
+# NOTE: Wiki command
+[keys.normal.space.",".w]
+w = [":o ~/wiki/index.md"]
+j = [":o ~/wiki/journal/index.md"]
+D = [":o ~/wiki/dvsa/index.md"]
+d = [":o ~/wiki/dib/index.md"]
+M = [":o ~/wiki/mtrl/index.md"]
+h = [":o ~/wiki/home/index.md"]
+i = [":o ~/wiki/index.md"]
+x = [":o ~/wiki/capture/index.md"]
+n = [":o ~/wiki/capture/notes.md"]
+
+# NOTE: Wiki command
+[keys.normal.space.o]
+w = [":o ~/wiki/index.md"]
+j = [":o ~/wiki/journal/index.md"]
+D = [":o ~/wiki/dvsa/index.md"]
+d = [":o ~/wiki/dib/index.md"]
+M = [":o ~/wiki/mtrl/index.md"]
+h = [":o ~/wiki/home/index.md"]
+i = [":o ~/wiki/index.md"]
+x = [":o ~/wiki/capture/index.md"]
+n = [":o ~/wiki/capture/notes.md"]
+
+
+# [keys.normal."minus"]
+# "minus" = ":hsplit"
+# "+" = ":vsplit"
+
+
+[keys.normal.space.r]
+r = "shell_pipe"
+
+[keys.normal.backspace]
+l = ":toggle lsp.display-inlay-hints"
+b = ":run-shell-command zellij run -f -- make build"
+r = ":run-shell-command zellij run -f -- make run"
+t = ":run-shell-command zellij run -f -- make test"
+g = ":run-shell-command zellij run -fc -- lazygit"
+f = ":run-shell-command zellij run -fc -- broot"
+
+
+[keys.normal."["]
+"[" = "goto_previous_buffer"
+
+[keys.normal."]"]
+"]" = "goto_next_buffer" 

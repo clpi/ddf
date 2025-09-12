@@ -1,0 +1,49 @@
+{
+	"lspconfig": {
+		"lua_ls": {
+			"Lua.hover.enable": true,
+			"Lua.hint.enable": true,
+			"Lua.completion.enable": true,
+			"Lua.semantic.enable": true,
+			"Lua.format.enable": true,
+			"Lua.signatureHelp.enable": true,
+			"Lua.codeLens.enable": true,
+			"Lua.diagnostics.enable": true,
+			"Lua.semantic.variable": true,
+			"Lua.semantic.keyword": true,
+			"Lua.semantic.annotation": true,
+			"Lua.completion.displayContext": 1,
+			"Lua.addonManager.enable": true,
+			"Lua.hover.previewFields": 10
+		}
+	},
+	"neodev": {
+		"library": {
+			"enabled": true,
+			"plugins": true
+		}
+	},
+	"neoconf": {
+		"live_reload": true,
+		"global_settings": "neoconf.json",
+		"import": {
+			"vscode": true,
+			"nlsp": true,
+			"coc": true
+		},
+		"local_settings": ".neoconf.json",
+		"filetype_jsonc": true,
+		"plugins": {
+			"lspconfig": {
+				"enabled": true
+			},
+			"jsonls": {
+				"enabled": true,
+				"configured_servers_only": false
+			},
+			"lua_ls": {
+				"enabled": true
+			}
+		}
+	}
+}

@@ -1,0 +1,34 @@
+{
+  "neoconf": {
+    "live_reload": true,
+    "global_settings": "neoconf.json",
+    "filetype_jsonc": true,
+    "plugins": {
+      "lspconfig": {
+        "enabled": true
+      },
+      "jsonls": {
+        "configured_servers_only": false,
+        "enabled": true
+      },
+      "lua_ls": {
+        "enabled": true,
+        "enabled_for_neovim_config": true
+      }
+    }
+  },
+  "lspconfig": {
+    "lua_ls": {
+      "Lua.hint.enable": true,
+      "Lua.format.enable": true,
+      "Lua.semantic.enable": true,
+      "Lua.semantic.variable": true,
+      "Lua.semantic.keyword": true,
+      "Lua.language.completeAnnotation": true,
+      "Lua.type.inferParamType": true,
+      "Lua.hint.paramType": true,
+      "Lua.hint.paramName": "All",
+      "Lua.semantic.annotation": true
+    }
+  }
+}
