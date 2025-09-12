@@ -235,35 +235,88 @@ environment.sessionVariables = {
     kdePackages.discover
     kdePackages.kdevelop
     vlc
+    gdevelop
+    gaphor
+    gnome-connections
+    brave
+    neovide
+    insomnia
+    godot
     kanshi
     swayidle
+#   cohesion
+    postman
     wayland-utils
     wl-clipboard
     	vim
 	grc
+	firecracker
+	vscodium
 	neovim
+	zeal
 	kakoune
+	qutebrowser
+	luakit
 	vis
+	bruno
+	httpie
+	pods
+
+	amfora
+	gnome-builder
+	# pulsar
+	meld
 	dive
 	podman
+	devhelp
 	podman-tui
 	docker-compose
 	podman-compose
 	podman-desktop
 	gpg-tui
+	biblioteca
 	ansible
+	refine
+	marker
+	howl
+	ollama
+	tor-browser
+	planify
+	alpaca
+	endeavour
+	emulsion
 	helix
 	parinfer-rust
+	ghex
+	lapce
+	micro
+	inspector
 	thunderbird
+	lollypop
+	proton-pass
+	ncspot
+	foliate
+	seabird
+	lagrange
+	fractal
+	seahorse
+	obsidian
+	gnome-podcasts
+	gnome-feeds
+	blender
 	dotnet-runtime
+	spot
 	dotnet-sdk
+	cozy
 	dotnet-repl
+	cider
+	love
     ];
   };
   programs.git = {
 	  enable = true;
 	  # userName = "Chris Pecunies";
-	  # userEmail = "chris@pecunies.com";
+	  # userEmail = "chris@pecunies.com";~
   };
   services.factorio = {
   	enable = true;
