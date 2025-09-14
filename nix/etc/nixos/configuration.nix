@@ -265,6 +265,7 @@ environment.sessionVariables = {
 	lynx
 	weechat
 	toot
+	oterm
 	irssi
 	tuisky
 	mqttui

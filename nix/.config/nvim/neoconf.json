@@ -1,0 +1,39 @@
+{
+  "lspconfig": {
+    "vtsls": {
+      "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+      "javascript.inlayHints.parameterNames.enabled": "all",
+      "javascript.inlayHints.parameterTypes.enabled": true,
+      "javascript.inlayHints.variableTypes.enabled": true
+    },
+    "lua_ls": {
+      "Lua.hint.enable": true,
+      "Lua.hover.enable": true,
+      "Lua.codeLens.enable": true,
+      "Lua.completion.enable": true,
+      "Lua.semantic.annotation": true,
+      "Lua.semantic.enable": true,
+      "Lua.semantic.keyword": true,
+      "Lua.semantic.variable": true,
+      "Lua.hint.await": true,
+      "Lua.addonManager.enable": true
+    }
+  },
+  "neoconf": {
+    "live_reload": true,
+    "filetype_jsonc": true,
+    "plugins": {
+      "jsonls": {
+        "enabled": true,
+        "configured_servers_only": true
+      },
+      "lua_ls": {
+        "enabled": true,
+        "enabled_for_neovim_config": true
+      },
+      "lspconfig": {
+        "enabled": true
+      }
+    }
+  }
+}
