@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, callPackage, ... }:
+{ lib, config, pkgs, callPackage, ... }:
 
 {
   imports =
@@ -16,80 +16,98 @@
       inherit pkgs;
     };
   };
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot = {
+    loader = {
+      efi = {
+        canTouchEfiVariables = true;
+      };
+      systemd-boot = {
+        enable = true;
+      };
+    };
+    kernelPackages = pkgs.linuxPackages_latest;
+  };
   # programs.steam.extraPackages = [pkgs.jdk];
   # programs.steam.gamescopeSession.enable = true;
 
 
   # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  networking = {
+    hostName = "nixos";
+   networkmanager = {
+      enable = true;
+    };
+    # wireless = {
+      # enable = true;
+    # };
+  };
 
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "America/Los_Angeles";
+  time = {
+    timeZone = "America/Los_Angeles";
+  };
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-  programs.sway.enable = true;
-  # services.xserver.desktopManager.plasma6.enable = true;
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
+  };
+  environment = {
+    sessionVariables = {
+      MOZ_ENABLE_WAYLAND = "1";
+      QT_QPA_PLATFORM = "wayland";
+      # only needed for Sway
+      XDG_CURRENT_DESKTOP = "sway"; 
+      EDITOR = "nvim";
+      NIXOS_OZONE_WL = "1";
+      
+    };
+  };
   # programs.zsh.enable = true;
-  programs.htop.enable = true;
   # services.desktopManager.plasma6.enable = true;
-environment.sessionVariables = {
-    MOZ_ENABLE_WAYLAND = "1";
-    QT_QPA_PLATFORM = "wayland";
-    # only needed for Sway
-    XDG_CURRENT_DESKTOP = "sway"; 
-    EDITOR = "nvim";
-    NIXOS_OZONE_WL = "1";
-  };
-  programs.xwayland.enable = true;
-  programs.waybar.enable = true;
   # programs.dbus.enable = true;
-    xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg = {
+    portal = {
+      enable = true;
+      extraPortals = [
+        pkgs.xdg-desktop-portal-gtk
+      ];
+      wlr = {
+        enable = true;
+      };
+    };
   };
-  programs.sway.wrapperFeatures.gtk= true;
 
-  programs.river.enable = true;
-  programs.labwc.enable = true;
-  programs.wayfire.enable = true;
-  programs.hyprland.xwayland.enable = true;
   # programs.nushell.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
-  programs.hyprland.enable = true;
+  # services.server.displayManager.sddm.wayland.enable = true;
 
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_US.UTF-8";
-    LC_IDENTIFICATION = "en_US.UTF-8";
-    LC_MEASUREMENT = "en_US.UTF-8";
-    LC_MONETARY = "en_US.UTF-8";
-    LC_NAME = "en_US.UTF-8";
-    LC_NUMERIC = "en_US.UTF-8";
-    LC_PAPER = "en_US.UTF-8";
-    LC_TELEPHONE = "en_US.UTF-8";
-    LC_TIME = "en_US.UTF-8";
+
+  users = {
+   # userDefaultShell = pkgs.fish;
+    users = {
+      clp = {
+        shell = pkgs.fish;
+      };
+    };
+    
   };
-
-  programs.zsh.enable=true;
-  programs.fish.enable=true;
-  programs.xonsh.enable=true;
-  users.defaultUserShell = pkgs.fish;
-  users.users.clp.shell = pkgs.fish;
-  programs.i3lock.enable = true;
   fonts.fontconfig.defaultFonts.monospace = [ "ZedMono Nerd Font" ];
   services.blueman.enable = true;
   # security.sudo.extraRules = [
@@ -108,54 +126,136 @@ environment.sessionVariables = {
   # fish
   # # nushell
   # ];
-  programs.dconf.enable = true;
-  programs.java = {
-    enable = true;
-    # package = pkgs.oraclejre8;
-  };
   # Enable the X11 windowing system.
-  security.polkit.enable = true;
   # services.desktopManager.plasma-desktop.enable = true;
   # services.desktopManager.sddm.enable = true;
   # services.desktopManager.sddm.wayland.enable = true;
-  services.xserver = {
-	  enable = true;
-	  windowManager = {
-	  	qtile.enable = true;
-	  	i3 = {
-			enable = true;
-			extraPackages = with pkgs; [
-				dmenu
-				i3status
-				i3blocks
-			];
-		};
-		awesome = {
-			enable = true;
-			luaModules = with pkgs.luaPackages; [
-			    luarocks
-			    luadbi-mysql
-			    awesome-wm-widgets
-			    
-			];
-		};
-		dwm.enable= true;
-		openbox.enable= true;
-		xmonad ={
-		enable=true;
-		enableContribAndExtras=true;
-		};
+  hardware.bluetooth.enable = true;
+	# sddm = {
+	#   enable = true;
+	#   settings = {
+	#     General = {
+	#       DisplayServer = "wayland";
+	#     };
+	#   };
+	#   wayland.enable = true;
+	# };
+	programs = {
+	  i3lock.enable = true;
+	  htop.enable  = true;
+	  waybar.enable = true;
+	  river.enable = true;
+	  xwayland.enable = true;
+	  wayfire = {
+	    enable = true;
+	  };
+	  hyprland= {
+	    xwayland = {
+	      enable = true;
+	    };
+	    enable = true;
+	  };
+	  labwc.enable = true;
 
+	  sway = {
+	    enable = true;
+	    wrapperFeatures.gtk = true;
 	  };
-	  displayManager.gdm.enable = true;
-	  desktopManager={
-	  	xterm.enable = false;
-	  	gnome.enable = true;
+	  java = {
+	    enable = true;
+	  };
+	  dconf = {
+	    enable = true;
+	  };
+	  xonsh.enable = true;
+	  zsh.enable=true;
+	  fish.enable=true;
+	  
 	};
-	  xkb = {
-	    layout = "us";
-	    variant = "";
-	  };
+  services = {
+    # polkit = {
+      # enable = true;
+    # };
+    # displayManager = {
+      # defaultSession = "sway";
+      # gdm = {
+        # enable = true;
+      # };
+      # sddm = {
+        # enable = true;
+        # wayland = {
+          # enable = true;
+        # };
+      # };
+#       
+    # };
+    xserver = {
+      # displayManager = {
+        # defaultSession = "sway";
+        # gdm = {
+          # enable = true;
+        # };
+        # sddm = {
+          # enable = true;
+          # wayland = {
+            # enable = true;
+          # };
+        # };
+#       
+      # };
+      enable = true;
+  	  xkb = {
+  	    layout = "us";
+  	    variant = "";
+  	  };
+  	  desktopManager={
+  	  	xterm.enable = false;
+  	  	gnome.enable = true;
+  		  # plasma6.enable = true;
+  		};
+      windowManager = {
+        qtile = {
+          enable = true;
+        };
+        i3 = {
+          enable = true;
+          extraPackages = with pkgs; [
+            dmenu
+            i3status
+            i3lock
+            i3blocks
+          ];
+        };
+        awesome = {
+          enable = true;
+          luaModules = with pkgs.luaPackages; [
+            luarocks
+            luadbi-mysql
+            awesome-wm-widgets
+          ];
+        };
+        dwm = {
+          enable = true;
+        };
+        openbox = {
+          enable = true;
+        };
+        xmonad = {
+          enable = true;
+          enableContribAndExtras = true;
+        };
+
+        
+      };
+      # desktopManager = {
+        # plasma6 = {
+          # enable = true; };
+        # gnome = {
+          # enable = true;
+          # enableContribAndExtras=true;
+        # };
+      # };
+    };
   };
   programs.light.enable = true;
 
@@ -194,20 +294,28 @@ environment.sessionVariables = {
 	# xwayland.enable = true;
 	# systemd.enable = true;
 	#  };
-  nix.settings.experimental-features = [
-  "nix-command"
-  "flakes"
-  ];
+	nix = {
+	  settings = {
+	    experimental-features = [
+	      "nix-command"
+	      "flakes"
+	    ];
+	  };
+	};
   virtualisation= {
   	containers.enable = true;
-	podman = {
-	enable = true;
-	dockerCompat = false;
-	defaultNetwork.settings.dns_enabled = true;
-	};
-	oci-containers = {
-		backend = "podman";
-	};
+  	podman = {
+    	enable = true;
+  	  dockerCompat = false;
+  	  defaultNetwork = {
+  	    settings = {
+  	      dns_enabled = true;
+  	    };
+  	  };
+  	};
+  	oci-containers = {
+  		backend = "podman";
+  	};
   	docker = {
 		enable = true;
 		# daemon.settings = {
@@ -422,6 +530,8 @@ environment.sessionVariables = {
 	seahorse
 	posting
 	himalaya
+	just
+	gnumake
 	gping
 	meli
 	alpine
