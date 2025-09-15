@@ -103,239 +103,11 @@
    # userDefaultShell = pkgs.fish;
     users = {
       clp = {
+
+	    isNormalUser = true;
+	    description = "Chris";
+	    extraGroups = [ "networkmanager" "wheel" ];
         shell = pkgs.fish;
-      };
-    };
-    
-  };
-  fonts.fontconfig.defaultFonts.monospace = [ "ZedMono Nerd Font" ];
-  services.blueman.enable = true;
-  # security.sudo.extraRules = [
-  #   { users = [ "clp" ];
-  #     commands = [
-  #       { command = "ALL" ;
-  #         options= [ "NOPASSWD" ]; # "SETENV" # Adding the following could be a good idea
-  #       }
-  #     ];
-  #  }
-  #  ];
-
-  # environment.shells = with pkgs; [
-  #
-  # zsh
-  # fish
-  # # nushell
-  # ];
-  # Enable the X11 windowing system.
-  # services.desktopManager.plasma-desktop.enable = true;
-  # services.desktopManager.sddm.enable = true;
-  # services.desktopManager.sddm.wayland.enable = true;
-  hardware.bluetooth.enable = true;
-	# sddm = {
-	#   enable = true;
-	#   settings = {
-	#     General = {
-	#       DisplayServer = "wayland";
-	#     };
-	#   };
-	#   wayland.enable = true;
-	# };
-	programs = {
-	  i3lock.enable = true;
-	  htop.enable  = true;
-	  waybar.enable = true;
-	  river.enable = true;
-	  xwayland.enable = true;
-	  wayfire = {
-	    enable = true;
-	  };
-	  hyprland= {
-	    xwayland = {
-	      enable = true;
-	    };
-	    enable = true;
-	  };
-	  labwc.enable = true;
-
-	  sway = {
-	    enable = true;
-	    wrapperFeatures.gtk = true;
-	  };
-	  java = {
-	    enable = true;
-	  };
-	  dconf = {
-	    enable = true;
-	  };
-	  xonsh.enable = true;
-	  zsh.enable=true;
-	  fish.enable=true;
-	  
-	};
-  services = {
-    # polkit = {
-      # enable = true;
-    # };
-    # displayManager = {
-      # defaultSession = "sway";
-      # gdm = {
-        # enable = true;
-      # };
-      # sddm = {
-        # enable = true;
-        # wayland = {
-          # enable = true;
-        # };
-      # };
-#       
-    # };
-    xserver = {
-      # displayManager = {
-        # defaultSession = "sway";
-        # gdm = {
-          # enable = true;
-        # };
-        # sddm = {
-          # enable = true;
-          # wayland = {
-            # enable = true;
-          # };
-        # };
-#       
-      # };
-      enable = true;
-  	  xkb = {
-  	    layout = "us";
-  	    variant = "";
-  	  };
-  	  desktopManager={
-  	  	xterm.enable = false;
-  	  	gnome.enable = true;
-  		  # plasma6.enable = true;
-  		};
-      windowManager = {
-        qtile = {
-          enable = true;
-        };
-        i3 = {
-          enable = true;
-          extraPackages = with pkgs; [
-            dmenu
-            i3status
-            i3lock
-            i3blocks
-          ];
-        };
-        awesome = {
-          enable = true;
-          luaModules = with pkgs.luaPackages; [
-            luarocks
-            luadbi-mysql
-            awesome-wm-widgets
-          ];
-        };
-        dwm = {
-          enable = true;
-        };
-        openbox = {
-          enable = true;
-        };
-        xmonad = {
-          enable = true;
-          enableContribAndExtras = true;
-        };
-
-        
-      };
-      # desktopManager = {
-        # plasma6 = {
-          # enable = true; };
-        # gnome = {
-          # enable = true;
-          # enableContribAndExtras=true;
-        # };
-      # };
-    };
-  };
-  programs.light.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-
-  # Configure keymap in X11
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.emacs = {
-  	enable = true;
-	package = pkgs.emacs;
-	};
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
-  };
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-	#  wayland.windowManager.hyprland = {
-	#  	enable = true;
-	# package = pkgs.hyprland;
-	# xwayland.enable = true;
-	# systemd.enable = true;
-	#  };
-	nix = {
-	  settings = {
-	    experimental-features = [
-	      "nix-command"
-	      "flakes"
-	    ];
-	  };
-	};
-  virtualisation= {
-  	containers.enable = true;
-  	podman = {
-    	enable = true;
-  	  dockerCompat = false;
-  	  defaultNetwork = {
-  	    settings = {
-  	      dns_enabled = true;
-  	    };
-  	  };
-  	};
-  	oci-containers = {
-  		backend = "podman";
-  	};
-  	docker = {
-		enable = true;
-		# daemon.settings = {
-		# 	userland-proxy = false;
-		# 	experimental = true;
-		# 	ipv6 = true;
-		# };
-		# storageDriver= "btrfs";
-		# rootless = {
-			# enable = true;
-			# setSocketVariable=true;
-		# };
-	};
-};
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.clp = {
-    isNormalUser = true;
-    description = "Chris";
-    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
     kdePackages.kate
     # kdePackages.kile
@@ -361,6 +133,7 @@
 	firecracker
 	vscodium
 	neovim
+	ov
 	zeal
 	kakoune
 	k9s
@@ -377,6 +150,7 @@
 	irssi
 	tuisky
 	mqttui
+	powershell
 	# nmtui
 	# diskonaut
 	lazyjj
@@ -389,6 +163,15 @@
 	calcurse
 	navi
 	bombadillo
+	nwg-launchers
+	nwg-panel
+	nwg-bar
+	nwg-look
+	nwg-hello
+	yofi
+	rofi
+	wofi
+	lavalauncher
 	goaccess
 	superfile
 	duf
@@ -402,7 +185,9 @@
 	discordo
 	dooit
 	pspg
+	yambar
 	circumflex
+	polybaar
 	gollama
 	rmpc
 	systeroid
@@ -415,6 +200,7 @@
 	atac
 	dblab
 	flow
+	lunarvim
 	serie
 	jjui
 	# jira-cli
@@ -446,12 +232,14 @@
 	# lazyssh
 	bat
 	# cir
+	# rtv
 	zx
 	khal
 	sc-im
 	termscp
 	zellij
-	taskwarrior
+	taskwarrior3
+	ly
 	taskwarrior-tui
 	browsh
 	haxor-news
@@ -550,23 +338,306 @@
 	cider
 	love
     ];
+      };
+    };
+    
   };
-  programs.git = {
-	  enable = true;
-	  # userName = "Chris Pecunies";
-	  # userEmail = "chris@pecunies.com";~
+  fonts.fontconfig.defaultFonts.monospace = [ "ZedMono Nerd Font" ];
+  services.blueman.enable = true;
+	#  security = {
+	#  	sudo = {
+	# 	extraRules = [
+	# 		{
+	# 			command = "ALL";
+	# 			options = [ "NOPASSWD" ];
+	# 		}
+	# 	];
+	# };
+	#  };
+  # security.sudo.extraRules = [
+  #   { users = [ "clp" ];
+  #     commands = [
+  #       { command = "ALL" ;
+  #         options= [ "NOPASSWD" ]; # "SETENV" # Adding the following could be a good idea
+  #       }
+  #     ];
+  #  }
+  #  ];
+
+  # environment.shells = with pkgs; [
+  #
+  # zsh
+  # fish
+  # # nushell
+  # ];
+  # Enable the X11 windowing system.
+  # services.desktopManager.plasma-desktop.enable = true;
+  # services.desktopManager.sddm.enable = true;
+  # services.desktopManager.sddm.wayland.enable = true;
+  hardware = {
+
+  	graphics={
+		enable=true;
+  		enable32Bit=true;
+	};
+	xone = {
+		enable = true;
+	};
+  	bluetooth = {
+		enable = true;
+	};
   };
-  services.factorio = {
+	# sddm = {
+	#   enable = true;
+	#   settings = {
+	#     General = {
+	#       DisplayServer = "wayland";
+	#     };
+	#   };
+	#   wayland.enable = true;
+	# };
+programs = {
+
+  steam={
   	enable = true;
-	openFirewall = true;
+  	remotePlay.openFirewall=true;
+  	dedicatedServer.openFirewall=true;
+  	localNetworkGameTransfers.openFirewall=true;
+	gamescopeSession.enable=true;
+  };
+  	gamescope = {
+		enable=true;
+  		capSysNice=true;
+	};
+  	appimage = {
+		enable=true;
+  		binfmt=true;
 	};
 
+  # Some programs need SUID wrappers, can be configured further or are
+  # started in user sessions.
+  	mtr.enable = true;
+	  gnupg = {
+	  	agent = {
+		    enable = true;
+		    enableSSHSupport = true;
+		};
+	  };
+	firefox.enable = true;
+	  git = {
+		  enable = true;
+		  # userName = "Chris Pecunies";
+		  # userEmail = "chris@pecunies.com";~
+	  };
+	 nix-ld.enable = true; 
+	 light.enable = true;
+	  i3lock.enable = true;
+	  htop.enable  = true;
+	  waybar.enable = true;
+	  river.enable = true;
+	  xwayland.enable = true;
+	  wayfire = {
+	    enable = true;
+	  };
+	  hyprland= {
+	    xwayland = {
+	      enable = true;
+	    };
+	    enable = true;
+	  };
+	  labwc.enable = true;
+
+	  sway = {
+	    enable = true;
+	    wrapperFeatures.gtk = true;
+	  };
+	  java = {
+	    enable = true;
+	  };
+	  dconf = {
+	    enable = true;
+	  };
+	  xonsh.enable = true;
+	  zsh.enable=true;
+	  fish.enable=true;
+	  
+	};
+  services = {
+
+  factorio = {
+  	enable = true;
+	openFirewall = true;
+};
+    # polkit = {
+      # enable = true;
+    # };
+    displayManager = {
+      defaultSession = "sway";
+      # gdm = {
+      #   enable = true;
+      # };
+      # sddm = {
+        # enable = true;
+        # wayland = {
+          # enable = true;
+        # };
+      # };
+#       
+    };
+    xserver = {
+      displayManager = {
+        defaultSession = "sway";
+        gdm = {
+          enable = true;
+        };
+        # sddm = {
+          # enable = true;
+          # wayland = {
+            # enable = true;
+          # };
+        # };
+#       
+      };
+      enable = true;
+  	  xkb = {
+  	    layout = "us";
+  	    variant = "";
+  	  };
+  	  desktopManager={
+  	  	xterm.enable = false;
+  	  	gnome.enable = true;
+  		  # plasma6.enable = true;
+  		};
+      windowManager = {
+        qtile = {
+          enable = true;
+        };
+        i3 = {
+          enable = true;
+          extraPackages = with pkgs; [
+            dmenu
+            i3status
+            i3lock
+            i3blocks
+          ];
+        };
+        awesome = {
+          enable = true;
+          luaModules = with pkgs.luaPackages; [
+            luarocks
+            luadbi-mysql
+            awesome-wm-widgets
+          ];
+        };
+	bspwm = {
+		enable = true;
+		};
+        dwm = {
+          enable = true;
+        };
+        openbox = {
+          enable = true;
+        };
+        xmonad = {
+          enable = true;
+          enableContribAndExtras = true;
+        };
+
+        
+      };
+      # desktopManager = {
+        # plasma6 = {
+          # enable = true; };
+        # gnome = {
+          # enable = true;
+          # enableContribAndExtras=true;
+        # };
+      # };
+    };
+  };
+
+  # Enable the GNOME Desktop Environment.
+
+  # Configure keymap in X11
+
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
+
+  # Enable sound with pipewire.
+  services.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.emacs = {
+  	enable = true;
+	package = pkgs.emacs;
+	};
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    # If you want to use JACK applications, uncomment this
+    #jack.enable = true;
+
+    # use the example session manager (no others are packaged yet so this is enabled by default,
+    # no need to redefine it in your config for now)
+    #media-session.enable = true;
+  };
+
+  # Enable touchpad support (enabled default in most desktopManager).
+  services.libinput.enable = true;
+	#  wayland.windowManager.hyprland = {
+	#  	enable = true;
+	# package = pkgs.hyprland;
+	# xwayland.enable = true;
+	# systemd.enable = true;
+	#  };
+	nix = {
+	  settings = {
+	    experimental-features = [
+	      "nix-command"
+	      "flakes"
+	    ];
+	  };
+	};
+  virtualisation= {
+  	containers.enable = true;
+  	podman = {
+    	enable = true;
+  	  dockerCompat = false;
+  	  defaultNetwork = {
+  	    settings = {
+  	      dns_enabled = true;
+  	    };
+  	  };
+  	};
+  	oci-containers = {
+  		backend = "podman";
+  	};
+  	docker = {
+		enable = true;
+		# daemon.settings = {
+		# 	userland-proxy = false;
+		# 	experimental = true;
+		# 	ipv6 = true;
+		# };
+		# storageDriver= "btrfs";
+		# rootless = {
+			# enable = true;
+			# setSocketVariable=true;
+		# };
+	};
+};
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+
   # Install firefox.
-  programs.firefox.enable = true;
-  programs.nix-ld.enable = true;
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+  	config = {
+		allowUnfree = true;
+	};
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -596,7 +667,9 @@
     ripgrep
     google-cloud-sdk
     playerctl
+    bspwm
     ranger
+    lf
     kanshi
     wayland
     tmux
@@ -613,6 +686,10 @@
     wdisplays
     fnott
     bemenu
+    fuzzel
+    ulauncher
+    delta
+
     gimp
     spotify
     alacritty
@@ -622,6 +699,7 @@
     fishPlugins.forgit
     fishPlugins.hydro
     fzf
+    skim
     fishPlugins.grc
     fish
     gitui
@@ -654,29 +732,7 @@
    wget
   ];
   services.gnome.gnome-keyring.enable=true;
-  programs.gamescope.enable=true;
-  programs.gamescope.capSysNice=true;
-  hardware.graphics.enable=true;
-  hardware.graphics.enable32Bit=true;
-  programs.steam={
-  	enable = true;
-  	remotePlay.openFirewall=true;
-  	dedicatedServer.openFirewall=true;
-  	localNetworkGameTransfers.openFirewall=true;
-	gamescopeSession.enable=true;
-  };
-  hardware.xone.enable=true;
-  programs.appimage.enable=true;
-  programs.appimage.binfmt=true;
   services.sysprof.enable = true;
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
 
   # List services that you want to enable:
 
@@ -707,6 +763,8 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system = {
+  	stateVersion = "25.05"; # Did you read the comment?
+};
 
 }
