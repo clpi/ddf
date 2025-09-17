@@ -2,9 +2,25 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, config, pkgs, callPackage, ... }:
+{ inputs, lib, config, pkgs, callPackage, ... }:
 
 {
+	#  inputs = {
+	#    nixpkgs = {
+	#      url = "github:nixos/nixpkgs/nixos-unstable";
+	#    };
+	#    hardware = {
+	#      url = "github:nixos/nixos-hardware";
+	#    };
+	#    home-manager = {
+	#      url = "github:nix-community/home-manager";
+	#      inputs = {
+	#        nixpkgs = {
+	#   follows = "nixpkgs";
+	# };
+	#      };
+	#    };
+	#  };
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -19,6 +35,7 @@
   boot = {
     loader = {
       efi = {
+      	# efiSysMountPoint = "/boot/efi";
         canTouchEfiVariables = true;
       };
       systemd-boot = {
@@ -26,6 +43,17 @@
       };
     };
     kernelPackages = pkgs.linuxPackages_latest;
+  };
+  systemd = {
+    services = {
+      flatpak-repo = {
+        wantedBy = [ "multi-user.target" ];
+	path = [ pkgs.flatpak ];
+	script = ''
+	  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+	'';
+      };
+    };
   };
   # programs.steam.extraPackages = [pkgs.jdk];
   # programs.steam.gamescopeSession.enable = true;
@@ -38,7 +66,7 @@
       enable = true;
     };
     # wireless = {
-      # enable = true;
+    #   enable = true;
     # };
   };
 
@@ -70,6 +98,118 @@
     };
   };
   environment = {
+    # loginShellInit = ''
+    #   [ -d "$HOME/.nix-profile" ] || /nix/var/nix/profiles/per-user/$USER/home-manager/activate &> /dev/null
+    # '';
+	  systemPackages = with pkgs; [
+	  flatpak-builder
+	  (wrapOBS {
+		plugins = with obs-studio-plugins; [
+			wlrobs
+			obs-backgroundremoval
+			obs-pipewire-audio-capture
+		];
+	  })
+	  kompose
+	  kubectl
+	  kubernetes
+		gnomeExtensions.appindicator
+		factorio-headless
+		# factorio-experimental
+		# factorio-space-age
+		# factorio-space-age-experimental
+		# factorio-utils
+		# factoriolab
+	    fishPlugins.done
+	    fishPlugins.fzf-fish
+	    binutils
+	    gcc
+	    glib
+	    glibmm
+	    glew
+	    glfw
+	    llama-cpp
+	    lmstudio
+	    light
+	    swayidle
+	    diffutils
+	    diff-so-fancy
+	    fzy
+	    ripgrep
+	    google-cloud-sdk
+	    playerctl
+	    bspwm
+	    ranger
+	    lf
+	    gparted
+	    zoom-us
+	    libreoffice
+	    dconf2nix
+	    fd
+	    flatpak
+	    
+	    kitty
+	    kanshi
+	    wayland
+	    tmux
+	    libinput
+	    libxkbcommon
+	    zlib
+	    libnotify
+	    wlroots
+	    swaylock
+	    libva
+	    xorg.libxcb
+	    xorg.xcbutilwm
+	    glibc.static
+	    wdisplays
+	    fnott
+	    bemenu
+	    fuzzel
+	    ulauncher
+	    delta
+
+	    gimp
+	    spotify
+	    alacritty
+	    firefox-devedition
+	    # nix-prefetch-github
+	    pavucontrol
+	    fishPlugins.forgit
+	    fishPlugins.hydro
+	    fzf
+	    skim
+	    fishPlugins.grc
+	    fish
+	    gitui
+	    lazygit
+	    tig
+	    geany
+	    geary
+	    go
+	    crystal
+	    clojure
+	    clojure-lsp
+	    gcc
+	    libcap
+	    evolution
+	    lazydocker
+	  st
+	  elvish
+	   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+	   i3
+	   grim
+	   slurp
+	   wl-clipboard
+	   inotify-tools
+	   wlr-randr
+	   curl
+	   which
+	   xdg-utils
+	   mako
+	   helix
+	   wget
+	  ];
     sessionVariables = {
       MOZ_ENABLE_WAYLAND = "1";
       QT_QPA_PLATFORM = "wayland";
@@ -117,24 +257,55 @@
     vlc
     gdevelop
     gaphor
+    libadwaita
+    # libc
+    libffi
+    imgui
     gnome-connections
+    ccache
+    sccache
+    gamescope
+    gcc
     brave
+    glibc
+    clang
+    cmake
+    ninja
     neovide
     insomnia
     godot
     kanshi
+    dwarf-fortress-full
+    mindustry
+    minikube
+    tabby-agent
+    mindustry-wayland
     swayidle
 #   cohesion
     postman
     wayland-utils
+    bear
     wl-clipboard
     	vim
+	cling
+	tmuxp
+	tokei
+	clang-tools
+	llvm
+
 	grc
 	firecracker
 	vscodium
+	mg
 	neovim
 	ov
 	zeal
+	tilix
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+	zsh-fast-syntax-highlighting
+	ccls
+
 	kakoune
 	k9s
 	broot
@@ -161,6 +332,7 @@
 	yt-dlp
 	abook
 	calcurse
+	notion
 	navi
 	bombadillo
 	nwg-launchers
@@ -170,6 +342,9 @@
 	nwg-hello
 	yofi
 	rofi
+	gemini-cli
+	codex
+	# qwen-code
 	wofi
 	lavalauncher
 	goaccess
@@ -184,13 +359,21 @@
 	television
 	discordo
 	dooit
+	# warp-terminal
 	pspg
 	yambar
 	circumflex
-	polybaar
+	polybar
 	gollama
+	gemini-cli
 	rmpc
 	systeroid
+	goose
+	goose-cli
+	geopard
+	gitoxide
+	gitu
+	git-lfs
 	# gonzo
 	sig
 	# lstr
@@ -219,11 +402,15 @@
 	oxker
 	cargo-zigbuild
 	cargo-c
-	gitu
 	smenu
 	jqp
 	# oryx
 	procs
+	rsync
+	nmap
+	starship
+	terminator
+	wireshark
 	lsd
 	eza
 	process-compose
@@ -302,6 +489,11 @@
 	ncspot
 	foliate
 	uv
+	wasmer
+	wasmtime
+	wabt
+	wasm-tools
+	wasmedge
 	mise
 	bun
 	deno
@@ -315,12 +507,14 @@
 	dive
 	pgcli
 	fractal
+	act
 	seahorse
 	posting
 	himalaya
 	just
 	gnumake
 	gping
+	poetry
 	meli
 	alpine
 	mutt
@@ -462,7 +656,10 @@ programs = {
 	  fish.enable=true;
 	  
 	};
-  services = {
+services = {
+  flatpak = {
+    enable = true;
+  };
 
   factorio = {
   	enable = true;
@@ -591,14 +788,22 @@ programs = {
 	# xwayland.enable = true;
 	# systemd.enable = true;
 	#  };
-	nix = {
-	  settings = {
-	    experimental-features = [
-	      "nix-command"
-	      "flakes"
-	    ];
-	  };
-	};
+nix = {
+  # registry = lib.mapAttrs' (n: v: lib.nameValuePair n { flake = v; }) inputs;
+  gc = {
+    automatic = true;
+    persistent = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+  settings = {
+    auto-optimise-store = true;
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
+  };
+};
   virtualisation= {
   	containers.enable = true;
   	podman = {
@@ -641,96 +846,6 @@ programs = {
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  (wrapOBS {
-  	plugins = with obs-studio-plugins; [
-		wlrobs
-		obs-backgroundremoval
-		obs-pipewire-audio-capture
-	];
-  })
-  kompose
-  kubectl
-  kubernetes
-  	gnomeExtensions.appindicator
-	factorio-headless
-    fishPlugins.done
-    fishPlugins.fzf-fish
-    binutils
-    gcc
-    glib
-    light
-    swayidle
-    diffutils
-    diff-so-fancy
-    fzy
-    ripgrep
-    google-cloud-sdk
-    playerctl
-    bspwm
-    ranger
-    lf
-    kanshi
-    wayland
-    tmux
-    libinput
-    libxkbcommon
-    zlib
-    libnotify
-    wlroots
-    swaylock
-    libva
-    xorg.libxcb
-    xorg.xcbutilwm
-    glibc.static
-    wdisplays
-    fnott
-    bemenu
-    fuzzel
-    ulauncher
-    delta
-
-    gimp
-    spotify
-    alacritty
-    firefox-devedition
-    # nix-prefetch-github
-    pavucontrol
-    fishPlugins.forgit
-    fishPlugins.hydro
-    fzf
-    skim
-    fishPlugins.grc
-    fish
-    gitui
-    lazygit
-    tig
-    geany
-    geary
-    go
-    crystal
-    clojure
-    clojure-lsp
-    gcc
-    libcap
-    evolution
-    lazydocker
-  st
-  elvish
-   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-   i3
-   grim
-   slurp
-   wl-clipboard
-   inotify-tools
-   wlr-randr
-   curl
-   which
-   xdg-utils
-   mako
-   helix
-   wget
-  ];
   services.gnome.gnome-keyring.enable=true;
   services.sysprof.enable = true;
 
@@ -764,6 +879,10 @@ programs = {
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system = {
+  	autoUpgrade = {
+	  enable = true;
+	  channel = "https://nixos.org/channels/nixos-22.05";
+	};
   	stateVersion = "25.05"; # Did you read the comment?
 };
 
