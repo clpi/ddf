@@ -101,8 +101,27 @@
     # loginShellInit = ''
     #   [ -d "$HOME/.nix-profile" ] || /nix/var/nix/profiles/per-user/$USER/home-manager/activate &> /dev/null
     # '';
-	  systemPackages = with pkgs; [
+	  systemPackages = (
+	  let unstable = import (pkgs.fetchFromGitHub {
+	    owner="NixOS";
+	    repo="nixpkgs";
+	    rev="1bbe1fee60c10d628efbc639783197d1020c5463";
+	    sha256="sha256-igwdKMfWCo6pKMldoSKhTsx5QKSM7JXjbK6tCllSzlU=";
+	    }) { config = {
+	      allowUnfree = true;
+	      # overlays = [
+	      # (import (builtins.fetchTarball {
+	      #   url = https://github.com/nix-community/emacs-overlay/archive.master.tar.gz
+	      # }))
+	      # ];
+	    };
+	    };
+	  in 
+	  with pkgs; [
 	  flatpak-builder
+	  unstable.code-cursor
+	  windsurf
+
 	  (wrapOBS {
 		plugins = with obs-studio-plugins; [
 			wlrobs
@@ -124,6 +143,8 @@
 	    fishPlugins.fzf-fish
 	    binutils
 	    gcc
+	    libgcc
+	    libgccjit
 	    glib
 	    glibmm
 	    glew
@@ -144,6 +165,8 @@
 	    gparted
 	    zoom-us
 	    libreoffice
+	    unstable.vscode
+
 	    dconf2nix
 	    fd
 	    flatpak
@@ -209,7 +232,7 @@
 	   mako
 	   helix
 	   wget
-	  ];
+	  ]);
     sessionVariables = {
       MOZ_ENABLE_WAYLAND = "1";
       QT_QPA_PLATFORM = "wayland";
@@ -320,6 +343,7 @@
 	oterm
 	irssi
 	tuisky
+	pkg-config
 	mqttui
 	powershell
 	# nmtui
@@ -401,6 +425,7 @@
 	turbo
 	oxker
 	cargo-zigbuild
+	rustc
 	cargo-c
 	smenu
 	jqp
