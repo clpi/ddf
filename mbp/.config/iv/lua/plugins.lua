@@ -1,6 +1,104 @@
 local plugins = {
 	-- { "b0o/incline.nvim", opts = {} },
 	{ "nvim-lualine/lualine.nvim", opts = {} },
+	{ "github/copilot.vim" },
+	{
+		"xzbdmw/colorful-menu.nvim",
+		config = function()
+			-- You don't need to set these options.
+			require("colorful-menu").setup({
+				ls = {
+					lua_ls = {
+						-- Maybe you want to dim arguments a bit.
+						arguments_hl = "@comment",
+					},
+					gopls = {
+						-- By default, we render variable/function's type in the right most side,
+						-- to make them not to crowd together with the original label.
+
+						-- when true:
+						-- foo             *Foo
+						-- ast         "go/ast"
+
+						-- when false:
+						-- foo *Foo
+						-- ast "go/ast"
+						align_type_to_right = true,
+						-- When true, label for field and variable will format like "foo: Foo"
+						-- instead of go's original syntax "foo Foo". If align_type_to_right is
+						-- true, this option has no effect.
+						add_colon_before_type = false,
+						-- See https://github.com/xzbdmw/colorful-menu.nvim/pull/36
+						preserve_type_when_truncate = true,
+					},
+					-- for lsp_config or typescript-tools
+					ts_ls = {
+						-- false means do not include any extra info,
+						-- see https://github.com/xzbdmw/colorful-menu.nvim/issues/42
+						extra_info_hl = "@comment",
+					},
+					vtsls = {
+						-- false means do not include any extra info,
+						-- see https://github.com/xzbdmw/colorful-menu.nvim/issues/42
+						extra_info_hl = "@comment",
+					},
+					["rust-analyzer"] = {
+						-- Such as (as Iterator), (use std::io).
+						extra_info_hl = "@comment",
+						-- Similar to the same setting of gopls.
+						align_type_to_right = true,
+						-- See https://github.com/xzbdmw/colorful-menu.nvim/pull/36
+						preserve_type_when_truncate = true,
+					},
+					clangd = {
+						-- Such as "From <stdio.h>".
+						extra_info_hl = "@comment",
+						-- Similar to the same setting of gopls.
+						align_type_to_right = true,
+						-- the hl group of leading dot of "•std::filesystem::permissions(..)"
+						import_dot_hl = "@comment",
+						-- See https://github.com/xzbdmw/colorful-menu.nvim/pull/36
+						preserve_type_when_truncate = true,
+					},
+					zls = {
+						-- Similar to the same setting of gopls.
+						align_type_to_right = true,
+					},
+					roslyn = {
+						extra_info_hl = "@comment",
+					},
+					dartls = {
+						extra_info_hl = "@comment",
+					},
+					-- The same applies to pyright/pylance
+					basedpyright = {
+						-- It is usually import path such as "os"
+						extra_info_hl = "@comment",
+					},
+					pylsp = {
+						extra_info_hl = "@comment",
+						-- Dim the function argument area, which is the main
+						-- difference with pyright.
+						arguments_hl = "@comment",
+					},
+					-- If true, try to highlight "not supported" languages.
+					fallback = true,
+					-- this will be applied to label description for unsupport languages
+					fallback_extra_info_hl = "@comment",
+				},
+				-- If the built-in logic fails to find a suitable highlight group for a label,
+				-- this highlight is applied to the label.
+				fallback_highlight = "@variable",
+				-- If provided, the plugin truncates the final displayed text to
+				-- this width (measured in display cells). Any highlights that extend
+				-- beyond the truncation point are ignored. When set to a float
+				-- between 0 and 1, it'll be treated as percentage of the width of
+				-- the window: math.floor(max_width * vim.api.nvim_win_get_width(0))
+				-- Default 60.
+				max_width = 60,
+			})
+		end,
+	},
 	{ "ray-x/go.nvim" },
 	{ "p00f/clangd_extensions.nvim", opts = {} },
 	{
@@ -10,7 +108,7 @@ local plugins = {
 	},
 	{
 		"S1M0N38/love2d.nvim",
-		enabled = false,
+		enabled = true,
 		event = "VeryLazy",
 		opts = {},
 		keys = {
@@ -21,15 +119,23 @@ local plugins = {
 	},
 	{
 		"mythos-404/xmake.nvim",
-		enabled = false,
+		enabled = true,
 		opts = {},
 	},
 	{
 		"Civitasv/cmake-tools.nvim",
+		enabled = true,
 		opts = {},
 	},
 	{ "smjonas/inc-rename.nvim", opts = {} },
-	{ "OXY2DEV/markview.nvim", opts = {} },
+	{
+		"OXY2DEV/markview.nvim",
+		enabled = false,
+		before = {
+			"nvim-treesitter/nvim-treesitter",
+		},
+		opts = {},
+	},
 	{
 		"greggh/claude-code.nvim",
 		dependencies = {
@@ -43,12 +149,15 @@ local plugins = {
 	{ "stevearc/aerial.nvim", opts = {} },
 	{ "stevearc/dressing.nvim", opts = {} },
 	{ "folke/trouble.nvim", opts = {} },
+	{ "folke/edgy.nvim", opts = {} },
 	{ "folke/noice.nvim", opts = {} },
 	{ "nvim-mini/mini.animate", version = false },
 	{ "nvim-mini/mini.icons", version = false },
 	{ "nvim-mini/mini.indentscope", version = false },
 	{ "nvim-mini/mini.surround", version = false },
-	{ "nvim-mini/mini.pairs", version = false },
+	-- { "nvim-mini/mini.pairs", version = false },
+	{ "windwp/nvim-autopairs", opts = {} },
+	{ "windwp/nvim-ts-autotag", opts = {} },
 	{
 		"piersolenski/wtf.nvim",
 		dependencies = {
@@ -124,6 +233,10 @@ local plugins = {
 	{
 		"akinsho/bufferline.nvim",
 		opts = {},
+	},
+	{
+		"SmiteshP/nvim-navic",
+		dependencies = { "neovim/nvim-lspconfig" },
 	},
 	{
 		"akinsho/toggleterm.nvim",
@@ -213,9 +326,13 @@ local plugins = {
 			"nvim-lua/plenary.nvim",
 		},
 	},
-	{ "nvim-telescope/telescope.nvim", opts = {}, dependencies = {
-		"nvim-lua/plenary.nvim",
-	} },
+	{
+		"nvim-telescope/telescope.nvim",
+		opts = {},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
 	{ -- Autoformat
 		"stevearc/conform.nvim",
 		event = { "BufWritePre" },
@@ -483,7 +600,17 @@ local plugins = {
 		--    - Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 		--    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	},
-	{ "zbirenbaum/copilot.lua", opts = {} },
+	{
+		"zbirenbaum/copilot.lua",
+		dependencies = {
+			"copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+		},
+		cmd = "Copilot",
+		event = "InsertEnter",
+		config = function()
+			require("copilot").setup({})
+		end,
+	},
 	{ -- Autocompletion
 		"saghen/blink.cmp",
 		event = "VimEnter",
@@ -542,7 +669,7 @@ local plugins = {
 				-- <c-k>: Toggle signature help
 				--
 				-- See :h blink-cmp-config-keymap for defining your own keymap
-				preset = "default",
+				preset = "enter",
 
 				-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
 				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -555,9 +682,28 @@ local plugins = {
 			},
 
 			completion = {
+				menu = {
+					auto_show = true,
+					auto_show_delay_ms = 0,
+					draw = {
+						treesitter = { "lsp" },
+						padding = { 0, 1 },
+						-- components = {
+						-- 	kind_icon = {
+						-- 		text = function(c)
+						-- 			return " " .. c.kind_icon .. c.icon_gap .. " "
+						-- 		end,
+						-- 	},
+						-- },
+					},
+				},
 				-- By default, you may press `<c-space>` to show the documentation.
 				-- Optionally, set `auto_show = true` to show the documentation after a delay.
-				documentation = { auto_show = true, auto_show_delay_ms = 5 },
+				documentation = {
+					treesitter_highlighting = true,
+					auto_show = true,
+					auto_show_delay_ms = 5,
+				},
 			},
 
 			sources = {
