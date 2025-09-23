@@ -1,0 +1,205 @@
+
+themes {
+    tokyonight_moon {
+        fg "#c8d3f5"
+        bg "#2f334d"
+        // Black should match the terminal background color
+        // This ensures the top and bottom bars are transparent
+        black "#222436"
+        red "#ff757f"
+        green "#c3e88d"
+        yellow "#ffc777"
+        blue "#82aaff"
+        magenta "#c099ff"
+        cyan "#86e1fc"
+        white "#828bb8"
+         orange "#ff966c"
+    }
+}
+keybinds clear-defaults=true {
+    tmux {
+      bind "c" {NewTab; SwitchToMode "normal"; }
+      bind "Ctrl c" {NewTab; SwitchToMode "normal"; }
+      bind "q" {NewTab; SwitchToMode "normal"; }
+      bind "Ctrl q" {NewTab; SwitchToMode "normal"; }
+
+      bind "-" { NewPane "Down"; SwitchToMode "normal"; }
+      bind "_" { NewPane "Right"; SwitchToMode "normal"; }
+
+      bind "Alt j" { NewPane "Down"; SwitchToMode "normal"; }
+      bind "Alt l" { NewPane "Right"; SwitchToMode "normal"; }
+      bind "Alt k" { NewPane "Up"; SwitchToMode "normal"; }
+      bind "Alt h" { NewPane "Left"; SwitchToMode "normal"; }
+
+      bind "Ctrl f" { ToggleFocusFullscreen; SwitchToMode "normal"; }
+
+      bind "Ctrl n" { GoToNextTab; SwitchToMode "normal"; }
+      bind "Ctrl p" { GoToPreviousTab; SwitchToMode "normal"; }
+
+      bind "Ctrl h" { MoveFocus "Left"; SwitchToMode "normal"; }
+      bind "Ctrl l" { MoveFocus "Right"; SwitchToMode "normal"; }
+      bind "Ctrl j" { MoveFocus "Down"; SwitchToMode "normal"; }
+      bind "Ctrl k" { MoveFocus "Up"; SwitchToMode "normal"; }
+
+      bind "h" { MoveFocus "Left"; SwitchToMode "normal"; }
+      bind "l" { MoveFocus "Right"; SwitchToMode "normal"; }
+      bind "j" { MoveFocus "Down"; SwitchToMode "normal"; }
+      bind "k" { MoveFocus "Up"; SwitchToMode "normal"; }
+
+      bind "H" { Resize "Decrease Left";}
+      bind "J" { Resize "Decrease Down";}
+      bind "K" { Resize "Increase Up";}
+      bind "L" { Resize "Increase Right";}
+
+        bind "Tab" { ToggleTab; }
+
+        bind "[" { MoveFocusOrTab "Left"; SwitchToMode "normal"; }
+        bind "]" { MoveFocusOrTab "Right";SwitchToMode "normal"; }
+
+        bind "p" { MoveFocusOrTab "Left"; SwitchToMode "normal"; }
+        bind "n" { MoveFocusOrTab "Right";SwitchToMode "normal"; }
+
+        bind "," { MoveFocusOrTab "Left"; SwitchToMode "normal";}
+        bind "." { MoveFocusOrTab "Right"; SwitchToMode "normal";}
+
+        bind "1" { GoToTab 1; SwitchToMode "normal";}
+        bind "2" { GoToTab 2; SwitchToMode "normal";}
+        bind "3" { GoToTab 3; SwitchToMode "normal";}
+        bind "4" { GoToTab 4; SwitchToMode "normal";}
+        bind "5" { GoToTab 5; SwitchToMode "normal";}
+        bind "6" { GoToTab 6; SwitchToMode "normal";}
+        bind "7" { GoToTab 7; SwitchToMode "normal";}
+        bind "8" { GoToTab 8; SwitchToMode "normal";}
+        bind "9" { GoToTab 9; SwitchToMode "normal";}
+        bind "x" { CloseFocus; SwitchToMode "normal"; }
+        bind "Ctrl w" { CloseFocus; SwitchToMode "normal"; }
+        bind "Ctrl x" { Quit; }
+        bind "o" { FocusNextPane; }
+        bind "d" { Detach; }
+        bind "Space" { NextSwapLayout; }
+        bind "Ctrl s" {
+            LaunchOrFocusPlugin "zellij:session-manager" {
+                floating true
+                move_to_focused_tab true
+            };
+            SwitchToMode "Normal"
+        }
+    }
+    normal {
+        bind "Ctrl q" { Write 2; SwitchToMode "tmux"; }
+        bind "Ctrl _" { Write 0; SwitchToMode "tmux"; }
+        bind "Ctrl ," { GoToPreviousTab; }
+        bind "Ctrl ." { GoToNextTab;}
+    }
+}
+
+plugins {
+    tab-bar { path "tab-bar"; }
+    status-bar { path "status-bar"; }
+    strider { path "strider"; }
+    compact-bar { path "compact-bar"; }
+    session-manager { path "session-manager"; }
+}
+
+// Catppuccin Theme:
+// https://github.com/catppuccin/catppuccin
+themes {
+    tokyonight_moon {
+        fg "#c8d3f5"
+        bg "#2f334d"
+        // Black should match the terminal background color
+        // This ensures the top and bottom bars are transparent
+        black "#222436"
+        red "#ff757f"
+        green "#c3e88d"
+        yellow "#ffc777"
+        blue "#82aaff"
+        magenta "#c099ff"
+        cyan "#86e1fc"
+        white "#828bb8"
+        orange "#ff966c"
+
+    }
+}
+
+copy_on_select true
+styled_underlines true
+on_force_close "quit"
+simplified_ui true
+default_shell "/bin/zsh"
+copy_command "pbcopy"                     // osx
+pane_frames true
+theme "tokyonight_moon"
+mouse_mode true
+default_layout "compact"
+copy_clipboard "primary" // "system"
+scroll_buffer_size 1000000
+auto_layout true
+support_kitty_keyboard_protocol true
+scrollback_editor "nvim"
+default_mode "normal"
+mirror_session true
+serialize_pane_viewport true
+keybinds_clear_defaults true
+
+// The name of the default layout to load on startup
+// Default: "default"
+//
+
+// Choose the mode that zellij uses when starting up.
+// Default: normal
+//
+
+// Toggle enabling the mouse mode.
+// On certain configurations, or terminals this could
+// potentially interfere with copying text.
+// Options:
+//   - true (default)
+//   - false
+//
+
+// Configure the scroll back buffer size
+// This is the number of lines zellij stores for each pane in the scroll back
+// buffer. Excess number of lines are discarded in a FIFO fashion.
+// Valid values: positive integers
+// Default value: 10000
+//
+
+// Provide a command to execute when copying text. The text will be piped to
+// the stdin of the program to perform the copy. This can be used with
+// terminal emulators which do not support the OSC 52 ANSI control sequence
+// that will be used by default if this option is not set.
+// Examples:
+//
+// copy_command "xclip -selection clipboard" // x11
+// copy_command "wl-copy"                    // wayland
+
+// Choose the destination for copied text
+// Allows using the primary selection buffer (on x11/wayland) instead of the system clipboard.
+// Does not apply when using copy_command.
+// Options:
+//   - system (default)
+//   - primary
+//
+
+// Enable or disable automatic copy (and clear) of selection when releasing mouse
+// Default: true
+//
+
+// Path to the default editor to use to edit pane scrollbuffer
+// Default: $EDITOR or $VISUAL
+//
+
+// When attaching to an existing session with other users,
+// should the session be mirrored (true)
+// or should each user have their own cursor (false)
+// Default: false
+//
+
+// The folder in which Zellij will look for layouts
+//
+// layout_dir "/path/to/my/layout_dir"
+
+// The folder in which Zellij will look for themes
+//
+// theme_dir "/path/to/my/theme_dir"

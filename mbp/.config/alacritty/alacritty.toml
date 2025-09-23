@@ -1,0 +1,356 @@
+working_directory = "None"
+
+
+[terminal.shell]
+program = "zsh"
+args = ["--login"]
+
+
+[hints]
+enabled = []
+
+
+[general]
+live_config_reload = true
+
+
+[colors]
+transparent_background_colors = true
+draw_bold_text_with_bright_colors = false
+
+[colors.footer_bar]
+foreground = "#888888"
+background = "#181818"
+
+
+[window]
+blur = true
+decorations_theme_variant = "dark"
+startup_mode = "Windowed"
+dynamic_padding = false
+opacity = 0.92
+option_as_alt = "OnlyLeft"
+# decorations = "transparent"
+
+[window.padding]
+x = 0
+y = 0
+
+[window.position]
+y = 0
+
+[debug]
+renderer = "None"
+
+[terminal]
+
+
+[selection]
+save_to_clipboard = true
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[cursor.vi_mode_style]
+blinking = "on"
+shape = "Block"
+
+[cursor.style]
+blinking = "On"
+shape = "Beam"
+
+[font.italic]
+style = "italic"
+family = "ZedMono Nerd Font"
+
+[font.bold_italic]
+style = "bold italic"
+family = "ZedMono Nerd Font"
+
+[font.normal]
+family = "ZedMono Nerd Font"
+
+[font.bold]
+style = "bold"
+family = "ZedMono Nerd Font"
+
+[font]
+size = 11
+builtin_box_drawing = true
+
+# Colors (Ayu Mirage)
+
+# Default Colors
+[colors.primary]
+background = "#1f2430"
+foreground = "#cbccc6"
+bright_foreground = "#f28779"
+
+[colors.cursor]
+text = "CellBackground"
+cursor = "CellForeground"
+
+
+[colors.selection]
+background = "#3e4b59"
+text = "CellBackground"
+
+# # Normal colors
+# [colors.normal]
+# black = "#212733"
+# red = "#f08778"
+# green = "#53bf97"
+# yellow = "#fdcc60"
+# blue = "#60b8d6"
+# magenta = "#ec7171"
+# cyan = "#98e6ca"
+# white = "#fafafa"
+#
+# # Bright colors
+# [colors.bright]
+# black = "#686868"
+# red = "#f58c7d"
+# green = "#58c49c"
+# yellow = "#ffd165"
+# blue = "#65bddb"
+# magenta = "#f17676"
+# cyan = "#9debcf"
+# white = "#ffffff"
+# Colors (Ayu Dark)
+
+# Default colors
+#
+# [colors.primary]
+# background = '#0A0E14'
+# foreground = '#B3B1AD'
+
+# Normal colors
+[colors.normal]
+black = '#01060E'
+red = '#EA6C73'
+green = '#91B362'
+yellow = '#F9AF4F'
+blue = '#53BDFA'
+magenta = '#FAE994'
+cyan = '#90E1C6'
+white = '#C7C7C7'
+
+# Bright colors
+[colors.bright]
+black = '#686868'
+red = '#F07178'
+green = '#C2D94C'
+yellow = '#FFB454'
+blue = '#59C2FF'
+magenta = '#FFEE99'
+cyan = '#95E6CB'
+white = '#FFFFFF'
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+
+[font.offset]
+x = 0
+y = 0
+
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "Quit"
+key = "Q"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ToggleFullscreen"
+key = "F"
+mods = "Alt|Shift"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = 0
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+chars = "\u001BOP"
+key = "F1"
+
+[[keyboard.bindings]]
+chars = "\u001BOQ"
+key = "F2"
+
+[[keyboard.bindings]]
+chars = "\u001BOR"
+key = "F3"
+
+[[keyboard.bindings]]
+chars = "\u001BOS"
+key = "F4"
+
+[[keyboard.bindings]]
+chars = "\u001B[15~"
+key = "F5"
+
+[[keyboard.bindings]]
+chars = "\u001B[17~"
+key = "F6"
+
+[[keyboard.bindings]]
+chars = "\u001B[18~"
+key = "F7"
+
+[[keyboard.bindings]]
+chars = "\u001B[19~"
+key = "F8"
+
+[[keyboard.bindings]]
+chars = "\u001B[20~"
+key = "F9"
+
+[[keyboard.bindings]]
+chars = "\u001B[21~"
+key = "F10"
+
+[[keyboard.bindings]]
+chars = "\u001B[23~"
+key = "F11"
+
+[[keyboard.bindings]]
+chars = "\u001B[24~"
+key = "F12"
+
+[[keyboard.bindings]]
+chars = "\u007F"
+key = "Back"
+
+[[keyboard.bindings]]
+chars = "\u001B\u007F"
+key = "Back"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001B[2~"
+key = "Insert"
+
+[[keyboard.bindings]]
+chars = "\u001B[3~"
+key = "Delete"
+
+[[keyboard.bindings]]
+chars = "\u0001&"
+key = "W"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u0001c"
+key = "T"
+mods = "Alt"
+
+# [[keyboard.bindings]]
+# chars = "\u0002n"
+# key = "RBracket"
+# mods = "Alt"
+#
+# [[keyboard.bindings]]
+# chars = "\u0002p"
+# key = "LBracket"
+# mods = "Alt"
+#
+# [[keyboard.bindings]]
+# chars = "\u0002o"
+# key = "RBracket"
+# mods = "Alt"
+#
+# [[keyboard.bindings]]
+# chars = "\u0002;"
+# key = "LBracket"
+# mods = "Control"
+
+[mouse]
+hide_when_typing = false
+
+
+[[mouse.bindings]]
+action = "PasteSelection"
+mouse = "Middle"
+
+[[keyboard.bindings]]
+key = "Tab"
+mods = "Control"
+action = "SelectNextTab"
+
+[[keyboard.bindings]]
+action = "SelectPreviousTab"
+key = "Tab"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "SelectNextTab"
+key = " "
+mods = "Control"
+
+[colors.line_indicator]
+background = "None"
+foreground = "None"
+
+
+#tokyo night
+# [colors.bright]
+# black = "#444b6a"
+# blue = "#7da6ff"
+# cyan = "#0db9d7"
+# green = "#b9f27c"
+# magenta = "#bb9af7"
+# red = "#ff7a93"
+# white = "#acb0d0"
+# yellow = "#ff9e64"
+#
+# [colors.normal]
+# black = "#32344a"
+# blue = "#7aa2f7"
+# cyan = "#449dab"
+# green = "#9ece6a"
+# magenta = "#ad8ee6"
+# red = "#f7768e"
+# white = "#9699a8"
+# yellow = "#e0af68"
+#
+# [colors.primary]
+# background = "#24283b"
+# foreground = "#a9b1d6"
