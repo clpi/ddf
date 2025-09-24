@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+export NVIM_APPNAME="${NVIM_APPNAME:-"iv"}"
+
+export IV_CONFIG_DIR="${IV_CONFIG_DIR:-"/Users/clp/.config/iv"}"
+export IV_CACHE_DIR="${IV_CACHE_DIR:-"/Users/clp/.cache/iv"}"
+export IV_DATA_DIR="${IV_DATA_DIR:-"/Users/clp/.local/share/iv"}"
+export IV_STATE_DIR="${IV_STATE_DIR:-"/Users/clp/.local/state/iv"}"
+
+exec -a "$NVIM_APPNAME" nvim -u "$IV_CONFIG_DIR/init.lua" "$@"
