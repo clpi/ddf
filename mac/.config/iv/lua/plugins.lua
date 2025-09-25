@@ -1,103 +1,89 @@
 local plugins = {
 	-- { "b0o/incline.nvim", opts = {} },
-	{ "nvim-lualine/lualine.nvim", opts = {} },
-	{ "github/copilot.vim" },
+	{ "nvim-lualine/lualine.nvim", opts = {}, enabled = true },
+	{ "github/copilot.vim", enabled = true },
+	{ "j-hui/fidget.nvim", opts = {} },
+	{ "Exafunction/windsurf.vim", enabled = false },
 	{
 		"xzbdmw/colorful-menu.nvim",
-		config = function()
-			-- You don't need to set these options.
-			require("colorful-menu").setup({
-				ls = {
-					lua_ls = {
-						-- Maybe you want to dim arguments a bit.
-						arguments_hl = "@comment",
-					},
-					gopls = {
-						-- By default, we render variable/function's type in the right most side,
-						-- to make them not to crowd together with the original label.
-
-						-- when true:
-						-- foo             *Foo
-						-- ast         "go/ast"
-
-						-- when false:
-						-- foo *Foo
-						-- ast "go/ast"
-						align_type_to_right = true,
-						-- When true, label for field and variable will format like "foo: Foo"
-						-- instead of go's original syntax "foo Foo". If align_type_to_right is
-						-- true, this option has no effect.
-						add_colon_before_type = false,
-						-- See https://github.com/xzbdmw/colorful-menu.nvim/pull/36
-						preserve_type_when_truncate = true,
-					},
-					-- for lsp_config or typescript-tools
-					ts_ls = {
-						-- false means do not include any extra info,
-						-- see https://github.com/xzbdmw/colorful-menu.nvim/issues/42
-						extra_info_hl = "@comment",
-					},
-					vtsls = {
-						-- false means do not include any extra info,
-						-- see https://github.com/xzbdmw/colorful-menu.nvim/issues/42
-						extra_info_hl = "@comment",
-					},
-					["rust-analyzer"] = {
-						-- Such as (as Iterator), (use std::io).
-						extra_info_hl = "@comment",
-						-- Similar to the same setting of gopls.
-						align_type_to_right = true,
-						-- See https://github.com/xzbdmw/colorful-menu.nvim/pull/36
-						preserve_type_when_truncate = true,
-					},
-					clangd = {
-						-- Such as "From <stdio.h>".
-						extra_info_hl = "@comment",
-						-- Similar to the same setting of gopls.
-						align_type_to_right = true,
-						-- the hl group of leading dot of "•std::filesystem::permissions(..)"
-						import_dot_hl = "@comment",
-						-- See https://github.com/xzbdmw/colorful-menu.nvim/pull/36
-						preserve_type_when_truncate = true,
-					},
-					zls = {
-						-- Similar to the same setting of gopls.
-						align_type_to_right = true,
-					},
-					roslyn = {
-						extra_info_hl = "@comment",
-					},
-					dartls = {
-						extra_info_hl = "@comment",
-					},
-					-- The same applies to pyright/pylance
-					basedpyright = {
-						-- It is usually import path such as "os"
-						extra_info_hl = "@comment",
-					},
-					pylsp = {
-						extra_info_hl = "@comment",
-						-- Dim the function argument area, which is the main
-						-- difference with pyright.
-						arguments_hl = "@comment",
-					},
-					-- If true, try to highlight "not supported" languages.
-					fallback = true,
-					-- this will be applied to label description for unsupport languages
-					fallback_extra_info_hl = "@comment",
+		enabled = true,
+		dependencies = {
+			{ "onsails/lspkind.nvim", opts = {} },
+		},
+		opts = {
+			ls = {
+				lua_ls = {
+					-- Maybe you want to dim arguments a bit.
+					arguments_hl = "@comment",
 				},
-				-- If the built-in logic fails to find a suitable highlight group for a label,
-				-- this highlight is applied to the label.
-				fallback_highlight = "@variable",
-				-- If provided, the plugin truncates the final displayed text to
-				-- this width (measured in display cells). Any highlights that extend
-				-- beyond the truncation point are ignored. When set to a float
-				-- between 0 and 1, it'll be treated as percentage of the width of
-				-- the window: math.floor(max_width * vim.api.nvim_win_get_width(0))
-				-- Default 60.
-				max_width = 60,
-			})
-		end,
+				gopls = {
+					align_type_to_right = true,
+					add_colon_before_type = false,
+					preserve_type_when_truncate = true,
+				},
+				ts_ls = {
+					extra_info_hl = "@comment",
+				},
+				vtsls = {
+					-- false means do not include any extra info,
+					-- see https://github.com/xzbdmw/colorful-menu.nvim/issues/42
+					extra_info_hl = "@comment",
+				},
+				["rust-analyzer"] = {
+					-- Such as (as Iterator), (use std::io).
+					extra_info_hl = "@comment",
+					-- Similar to the same setting of gopls.
+					align_type_to_right = true,
+					-- See https://github.com/xzbdmw/colorful-menu.nvim/pull/36
+					preserve_type_when_truncate = true,
+				},
+				clangd = {
+					-- Such as "From <stdio.h>".
+					extra_info_hl = "@comment",
+					-- Similar to the same setting of gopls.
+					align_type_to_right = true,
+					-- the hl group of leading dot of "•std::filesystem::permissions(..)"
+					import_dot_hl = "@comment",
+					-- See https://github.com/xzbdmw/colorful-menu.nvim/pull/36
+					preserve_type_when_truncate = true,
+				},
+				zls = {
+					-- Similar to the same setting of gopls.
+					align_type_to_right = true,
+				},
+				roslyn = {
+					extra_info_hl = "@comment",
+				},
+				dartls = {
+					extra_info_hl = "@comment",
+				},
+				-- The same applies to pyright/pylance
+				basedpyright = {
+					-- It is usually import path such as "os"
+					extra_info_hl = "@comment",
+				},
+				pylsp = {
+					extra_info_hl = "@comment",
+					-- Dim the function argument area, which is the main
+					-- difference with pyright.
+					arguments_hl = "@comment",
+				},
+				-- If true, try to highlight "not supported" languages.
+				fallback = true,
+				-- this will be applied to label description for unsupport languages
+				fallback_extra_info_hl = "@comment",
+			},
+			-- If the built-in logic fails to find a suitable highlight group for a label,
+			-- this highlight is applied to the label.
+			fallback_highlight = "@variable",
+			-- If provided, the plugin truncates the final displayed text to
+			-- this width (measured in display cells). Any highlights that extend
+			-- beyond the truncation point are ignored. When set to a float
+			-- between 0 and 1, it'll be treated as percentage of the width of
+			-- the window: math.floor(max_width * vim.api.nvim_win_get_width(0))
+			-- Default 60.
+			max_width = 60,
+		},
 	},
 	{ "ray-x/go.nvim" },
 	{ "p00f/clangd_extensions.nvim", opts = {} },
@@ -138,23 +124,46 @@ local plugins = {
 	},
 	{
 		"greggh/claude-code.nvim",
+		enabled = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim", -- Required for git operations
 		},
-		config = function()
-			require("claude-code").setup()
-		end,
+		opts = {},
 	},
-	{ "stevearc/oil.nvim", opts = {} },
-	{ "stevearc/aerial.nvim", opts = {} },
-	{ "stevearc/dressing.nvim", opts = {} },
-	{ "folke/trouble.nvim", opts = {} },
-	{ "folke/edgy.nvim", opts = {} },
-	{ "folke/noice.nvim", opts = {} },
+
+	{ "stevearc/oil.nvim", enabled = false, opts = {} },
+	{ "stevearc/aerial.nvim", enabled = true, opts = {} },
+	{
+		"stevearc/dressing.nvim",
+		enabled = true,
+		opts = {},
+	},
+
+	{
+		"folke/trouble.nvim",
+		opts = {},
+		enabled = true,
+	},
+	{
+		"folke/edgy.nvim",
+		enabled = true,
+		opts = {},
+	},
+	{
+		"folke/noice.nvim",
+		enabled = true,
+		opts = {},
+	},
 	{ "nvim-mini/mini.animate", version = false },
+	{ "nvim-mini/mini.starter", version = false, opts = {} },
 	{ "nvim-mini/mini.icons", version = false },
 	{ "nvim-mini/mini.indentscope", version = false },
 	{ "nvim-mini/mini.surround", version = false },
+	{ "nvim-mini/mini.clue", enabled = false, version = false },
+	{ "nvim-mini/mini.hipatterns", enabled = true, version = false },
+	{ "nvim-mini/mini.cursorword", enabled = true, version = false },
+	{ "nvim-mini/mini.doc", enabled = true, version = false },
+	{ "nvim-mini/mini.bufremove", enabled = true, version = false },
 	-- { "nvim-mini/mini.pairs", version = false },
 	{ "windwp/nvim-autopairs", opts = {} },
 	{ "windwp/nvim-ts-autotag", opts = {} },
@@ -259,8 +268,6 @@ local plugins = {
 		},
 	},
 	{
-		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-		-- used for completion, annotations and signatures of Neovim apis
 		"folke/lazydev.nvim",
 		ft = "lua",
 		opts = {
@@ -312,7 +319,7 @@ local plugins = {
 	},
 	{
 		"MeanderingProgrammer/render-markdown.nvim",
-		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" }, -- if you use the mini.nvim suite
 		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' }, -- if you use standalone mini plugins
 		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
 		---@module 'render-markdown'
@@ -686,6 +693,31 @@ local plugins = {
 					auto_show = true,
 					auto_show_delay_ms = 0,
 					draw = {
+						columns = { { "kind_icon" }, { "label", gap = 1 } },
+						components = {
+							label = {
+								width = { fill = true, max = 60 },
+								text = function(c)
+									local hi = require("colorful-menu").blink_highlights(c)
+									if hi ~= nil then
+										return hi.label
+									else
+										return c.label
+									end
+								end,
+								highlight = function(c)
+									local h = {}
+									local hi = require("colorful-menu").blink_highlights(c)
+									if hi ~= nil then
+										h = hi.highlights
+									end
+									for _, i in ipairs(c.label_matched_indices) do
+										table.insert(h, { i, i + 1, group = "BlinkCmpLabelMatach" })
+									end
+									return h
+								end,
+							},
+						},
 						treesitter = { "lsp" },
 						padding = { 0, 1 },
 						-- components = {
@@ -774,11 +806,52 @@ local plugins = {
 		opts = {},
 	},
 	{
+		-- dir = "~/d/vim/down.nvim/",
 		"clpi/down.nvim",
-		enabled = false,
-		opts = { workspace = { workspaces = { wiki = "~/wiki", notes = "~/notes" }, default = "wiki" } },
+		dev = true,
+		enabled = true,
+		lazy = false,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"nvim-lua/plenary.nvim",
+			-- "MunifTanjim/nui.nvim",
+			-- "pysan3/pathlib.nvim",
+			-- "nvim-neotest/nvim-nio",
+			"nvim-telescope/telescope.nvim",
+		},
+		command = { "Down" },
+		keys = {
+			{ "<space>di", "<CMD>Down index<CR>", desc = "Down index" },
+			{ "<space>dny", "<CMD>Down note yesterday<CR>", desc = "Down yesterday" },
+			{ "<space>dnt", "<CMD>Down note today<CR>", desc = "Down today" },
+			{ "<space>dnT", "<CMD>Down note tomorrow<CR>", desc = "Down tomorrow" },
+			{ "<space>dnm", "<CMD>Down note month<CR>", desc = "Down month" },
+			{ "<space>dny", "<CMD>Down note year<CR>", desc = "Down year" },
+			{ "<space>dnw", "<CMD>Down note week<CR>", desc = "Down week" },
+			{ "<space>dw", "<CMD>Down workspace<CR>", desc = "Down workspace" },
+			{ "<space>dc", "<CMD>Down calendar<CR>", desc = "Down calendar" },
+			{ "<space>df", "<CMD>Down find<CR>", desc = "Down find" },
+			{ "<space>dn", "<CMD>Down note<CR>", desc = "Down note" },
+			{ "<space>dp", "<CMD>Down note template<CR>", desc = "Down note template" },
+			{ "<space>dd", "<CMD>Down<CR>", desc = "Down" },
+		},
+		opts = {
+			workspace = {
+				workspaces = {
+					wiki = "~/wiki",
+					dwiki = "~/d/wiki",
+					notes = "~/notes",
+					dnotes = "~/d/notes",
+				},
+				default = "dwiki",
+			},
+		},
 	},
-	{ "folke/snacks.nvim", opts = {} },
+	{
+		"folke/snacks.nvim",
+		enabled = false,
+		opts = {},
+	},
 	{
 		"folke/tokyonight.nvim",
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
@@ -788,16 +861,22 @@ local plugins = {
 			vim.cmd([[colorscheme tokyonight]])
 		end,
 	},
-
-	-- I have a separate config.mappings file where I require which-key.
-	-- With lazy the plugin will be automatically loaded when it is required somewhere
-	{ "folke/which-key.nvim", lazy = true },
-
-	-- add your plugins here
+	{ "folke/which-key.nvim", enabled = true, lazy = true },
 }
 require("lazy").setup({
-	spec = plugins,
-	install = { colorscheme = { "habamax" } },
+	dev = {
+		--- @type string | fun(plugin: LazyPlugin): string directory where you store your local plugin projects
+		path = "~/d/vim",
+		fallback = false,
+	},
+	spec = plugins, ---@type LazySpec
+	install = {
+		colorscheme = {
+			"habamax",
+		},
+	},
 	-- automatically check for plugin updates
-	checker = { enabled = true },
+	checker = {
+		enabled = true,
+	},
 })
