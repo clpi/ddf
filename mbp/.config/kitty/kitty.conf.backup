@@ -1,0 +1,26 @@
+font_family      ZedMono Nerd Font Mono
+font_size 10
+bold_font auto
+disable_ligatures never
+italic_font auto
+bold_italic_font auto
+font_size 10
+adjust_line_height  -1
+adjust_column_width +0
+
+#: Change the size of each character cell kitty renders. You can use
+#: either numbers, which are interpreted as pixels or percentages
+#: (number followed by %), which are interpreted as percentages of the
+#: unmodified values. You can use negative pixels or percentages less
+#: than 100% to reduce sizes (but this might cause rendering
+#: artifacts).
+
+adjust_baseline -1
+text_composition_strategy platform
+hide_window_decorations no
+background_opacity 0.9
+macos_titlebar_color system
+macos_option_as_alt no
+macos_custom_beam_cursor yes
+# macos_thicken_font yes
+background_blur 10
