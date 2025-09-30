@@ -1,0 +1,11 @@
+[tools]
+bun = "latest"
+deno = "latest"
+dotnet = "latest"
+go = "latest"
+nim = "latest"
+node = "latest"
+python = "latest"
+rust = "latest"
+terraform = "latest"
+uv = "latest"

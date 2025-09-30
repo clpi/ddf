@@ -1,0 +1,14 @@
+background = 282c34
+foreground = ffffff
+
+keybind = cmd+d=new_split:right
+
+font-family = ZedMono Nerd Font
+font-size = 11
+
+cursor-style = bar
+background-opacity = 0.95
+background-blur = true
+window-decoration = auto
+window-theme = dark
+macos-icon = blueprint

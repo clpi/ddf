@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+export NVIM_APPNAME="${NVIM_APPNAME:-"ce"}"
+
+export CE_CONFIG_DIR="${CE_CONFIG_DIR:-"/Users/clp/.config/ce"}"
+export CE_CACHE_DIR="${CE_CACHE_DIR:-"/Users/clp/.cache/ce"}"
+export CE_DATA_DIR="${CE_DATA_DIR:-"/Users/clp/.local/share/ce"}"
+export CE_STATE_DIR="${CE_STATE_DIR:-"/Users/clp/.local/state/ce"}"
+
+exec -a "$NVIM_APPNAME" nvim -u "$CE_CONFIG_DIR/init.lua" "$@"
