@@ -1,22 +1,13 @@
 local o = vim.opt
 local g = vim.g
-local env = vim.env
 
+o.autochdir = true
 o.hlsearch = true
 o.cursorline = true
-g.mapleader = " "
-g.maplocalleader = "\\"
-
-o.autoread = true
-o.pumblend = 10
-o.winblend = 10
-o.autowrite = true
-o.inccommand = "split"
-o.guifont = "ZedMono Nerd Font:h11"
-o.guifontwide = "ZedMono Nerd Font:h11"
-
 o.splitbelow = true
 o.splitright = true
+o.pumblend = 10
+o.winblend = 10
 o.autochdir = true
 o.signcolumn = "yes"
 o.incsearch = true
@@ -40,4 +31,4 @@ o.smoothscroll = true
 
 g.mapleader = " "
 g.maplocalleader = ","
-env.PATH = env.HOME .. "/.local/share/mise/shims:" .. env.PATH
+vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH

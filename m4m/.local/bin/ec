@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+export NVIM_APPNAME="${NVIM_APPNAME:-"ec"}"
+
+export EC_CONFIG_DIR="${EC_CONFIG_DIR:-"/Users/clp/.config/ec"}"
+export EC_CACHE_DIR="${EC_CACHE_DIR:-"/Users/clp/.cache/ec"}"
+export EC_DATA_DIR="${EC_DATA_DIR:-"/Users/clp/.local/share/ec"}"
+export EC_STATE_DIR="${EC_STATE_DIR:-"/Users/clp/.local/state/ec"}"
+
+exec -a "$NVIM_APPNAME" nvim -u "$EC_CONFIG_DIR/init.lua" "$@"

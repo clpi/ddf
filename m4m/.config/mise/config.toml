@@ -1,0 +1,27 @@
+[tools]
+bun = "latest"
+colima = "latest"
+deno = "latest"
+dotnet = "latest"
+ghc = "latest"
+go = "latest"
+gradle = "latest"
+groovy = "latest"
+java = "latest"
+jq = "latest"
+nim = "latest"
+node = "latest"
+pnpm = "latest"
+python = "latest"
+ruby = "latest"
+rust = "latest"
+shellcheck = "latest"
+shfmt = "latest"
+terraform = "latest"
+typst = "latest"
+uv = "latest"
+yarn = "latest"
+yq = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["python"]

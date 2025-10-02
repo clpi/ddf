@@ -2,6 +2,7 @@ local o = vim.opt
 local g = vim.g
 
 o.hlsearch = true
+o.cursorline = true
 o.splitbelow = true
 o.splitright = true
 o.pumblend = 10
@@ -29,3 +30,4 @@ o.smoothscroll = true
 
 g.mapleader = " "
 g.maplocalleader = ","
+vim.env.PATH = vim.env.HOME .. "/.local/share/mise/shims:" .. vim.env.PATH

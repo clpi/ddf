@@ -70,6 +70,7 @@ v("<tab>", "<CMD>lua vim.diagnostic.goto_next()<CR>", { silent = true, desc = "N
 v("<s-tab>", "<CMD>lua vim.diagnostic.goto_prev()<CR>", { silent = true, desc = "Prev diagnostic" })
 n("<space>ld", "<CMD>lua vim.diagnostic.open_float()<CR>", { silent = true, desc = "Line diagnostic" })
 n("<space>lD", "<CMD>lua vim.diagnostic.show()<CR>", { silent = true, desc = "Show line diagnostic" })
+n("<space>e", "<CMD>NvimTreeToggle<CR>", { silent = true, desc = "Explorer" })
 
 n("<space>f.", "<CMD>Telescope find_files cwd=%:p:h<CR>", { silent = true, desc = "Format File" })
 n("<space>ff", "<CMD>Telescope find_files<CR>", { silent = true, desc = "Find Files" })
@@ -93,21 +94,22 @@ n("<space>rw", "<esc>:%s/<C-R>=expand('<cword>')<CR>//g<left><left>", { silent =
 n("<space>rx", "<esc>:%s/<C-R>=expand('<cexpr>')<CR>//g<left><left>", { silent = false })
 n("<space>rR", "<esc>:%s///gi<left><left><left><left>", { silent = false })
 
-n("<space>vc", "<CMD>e ~/.config/iv/init.lua<CR>", { silent = true, desc = "init.lua" })
-n("<space>vs", "<CMD>e ~/.config/iv/lua/setup.lua<CR>", { silent = true, desc = "lua/setup.lua" })
-n("<space>vk", "<CMD>e ~/.config/iv/lua/keymaps.lua<CR>", { silent = true, desc = "keymaps.lua" })
-n("<space>vp", "<CMD>e ~/.config/iv/lua/plugins.lua<CR>", { silent = true, desc = "plugins.lua" })
-n("<space>vo", "<CMD>e ~/.config/iv/lua/opts.lua<CR>", { silent = true, desc = "opts.lua" })
-n("<space>va", "<CMD>e ~/.config/iv/lua/abbrev.lua<CR>", { silent = true, desc = "abbrev.lua" })
-n("<space>vl", "<CMD>e ~/.config/iv/lua/lsp.lua<CR>", { silent = true, desc = "lsp.lua" })
-n("<space>vv", "<CMD>Telescope find_files cwd=~/.config/iv<CR>", { silent = true, desc = "find" })
-n("<space>vf", "<CMD>Telescope find_files cwd=~/.config/iv<CR>", { silent = true, desc = "find" })
-n("<space>vg", "<CMD>Telescope live_grep cwd=~/.config/iv<CR>", { silent = true, desc = "grep" })
-vim.cmd([[
-  nm 0 ^
-  nm <space>vi <CMD>e ~/.config/iv/init.lua<CR>
-]])
+n("<space>vc", "<CMD>e ~/.config/ce/init.lua<CR>", { silent = true, desc = "init.lua" })
+n("<space>vl", "<CMD>e ~/.config/ce/lua/lazy.lua<CR>", { silent = true, desc = "lua/setup.lua" })
+n("<space>vk", "<CMD>e ~/.config/ce/lua/config/keys.lua<CR>", { silent = true, desc = "keymaps.lua" })
+n("<space>vp", "<CMD>e ~/.config/ce/lua/plugin/init.lua<CR>", { silent = true, desc = "plugins.lua" })
+n("<space>vo", "<CMD>e ~/.config/ce/lua/config/opts.lua<CR>", { silent = true, desc = "opts.lua" })
+n("<space>va", "<CMD>e ~/.config/ce/lua/config/abbrev.lua<CR>", { silent = true, desc = "abbrev.lua" })
+n("<space>vL", "<CMD>e ~/.config/ce/lua/lsp.lua<CR>", { silent = true, desc = "lsp.lua" })
+n("<space>vv", "<CMD>Telescope find_files cwd=~/.config/ce<CR>", { silent = true, desc = "find" })
+n("<space>vf", "<CMD>Telescope find_files cwd=~/.config/ce<CR>", { silent = true, desc = "find" })
+n("<space>vg", "<CMD>Telescope live_grep cwd=~/.config/ce<CR>", { silent = true, desc = "grep" })
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+vim.cmd([[
+  nm 0 ^
+  nm <space>vi <CMD>e ~/.config/ce/init.lua<CR>
+]])
+vim.keymap.set("n", "<space>e", "<CMD>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })

@@ -1,0 +1,21 @@
+return {
+	{
+		"mason-org/mason.nvim",
+		opts = {
+			install_root_dir = "/Users/clp/.local/share/nvim/mason",
+		},
+	},
+	{
+		"mason-org/mason-lspconfig.nvim",
+		opts = {
+			ensure_installed = {
+				"lua_ls",
+			},
+			automatic_enable = true,
+		},
+		dependencies = {
+			{ "mason-org/mason.nvim", opts = {} },
+			"neovim/nvim-lspconfig",
+		},
+	},
+}
