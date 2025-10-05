@@ -58,6 +58,9 @@ return {
 				--
 				-- See :h blink-cmp-config-keymap for defining your own keymap
 				preset = "enter",
+				["<TAB>"] = nil,
+				["<S-TAB>"] = nil,
+				["<C-E>"] = nil,
 
 				-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
 				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -68,10 +71,27 @@ return {
 				-- Adjusts spacing to ensure icons are aligned
 				nerd_font_variant = "normal",
 			},
+			sources = {
+				default = { "lsp", "path", "snippets" },
+			},
 
+			cmdline = {
+				enabled = false,
+			},
 			completion = {
+				accept = {
+					auto_brackets = {
+						enabled = true,
+					},
+				},
+				list = {
+					selection = {
+						preselect = true,
+					},
+				},
 				menu = {
 					auto_show = true,
+					enabled = true,
 					auto_show_delay_ms = 0,
 					draw = {
 						columns = { { "kind_icon" }, { "label", gap = 1 } },
@@ -100,7 +120,7 @@ return {
 							},
 						},
 						treesitter = { "lsp" },
-						padding = { 1, 1 },
+						padding = { 0, 1 },
 						-- components = {
 						-- 	kind_icon = {
 						-- 		text = function(c)
@@ -135,7 +155,9 @@ return {
 			-- the rust implementation via `'prefer_rust_with_warning'`
 			--
 			-- See :h blink-cmp-config-fuzzy for more information
-			fuzzy = { implementation = "lua" },
+			-- fuzzy = { implementation = "lua" },
+
+			fuzzy = { implementation = "prefer_rust" },
 
 			-- Shows a signature help window while you type arguments for a function
 			signature = { enabled = true },

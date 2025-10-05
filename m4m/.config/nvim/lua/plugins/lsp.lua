@@ -1,5 +1,44 @@
 local api = vim.api
 return {
+	{
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {
+			library = {
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+	{
+		"folke/neoconf.nvim",
+		opts = {},
+	},
+	{
+		"b0o/schemastore.nvim",
+		config = function()
+			local s = require("schemastore")
+			vim.lsp.config("jsonls", {
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas(),
+						validate = { enable = true },
+					},
+				},
+			})
+			vim.lsp.config("yamlls", {
+				settings = {
+					yaml = {
+						schemaStore = {
+							enable = true,
+							url = "",
+						},
+						schemas = require("schemastore").json.schemas(),
+					},
+				},
+			})
+		end,
+	},
 	{ "ray-x/go.nvim" },
 	{ "p00f/clangd_extensions.nvim", opts = {} },
 	{

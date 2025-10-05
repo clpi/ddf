@@ -1,10 +1,11 @@
-require("opts")
-require("setup")
-require("keymaps")
-require("abbrev")
-require("lsp")
-require("ft")
+if vim.loader then
+	vim.loader.enable()
+end
+if vim.env.VSCODE then
+	vim.g.vscode = true
+end
 
+require("config")
 require("lazy").setup({
 	spec = "plugins", ---@type LazySpec
 	dev = {
@@ -12,16 +13,13 @@ require("lazy").setup({
 		path = "~/.config/nvim/dev",
 		fallback = false,
 	},
-	install = {
-		colorscheme = {
-			"habamax",
-		},
-	},
 	-- automatically check for plugin updates
 	checker = {
 		enabled = true,
 	},
 })
+require("config.keymaps")
 
 -- Setup lazy.nvim
 vim.ui.select = require("dropbar.utils.menu").select
+-- vim.cmd.colorscheme("tokyonight-storm")

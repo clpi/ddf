@@ -1,5 +1,26 @@
 return {
 	{
+		"stevearc/overseer.nvim",
+		config = function()
+			require("overseer").setup({
+				dap = true,
+				strategy = {
+					"toggleterm",
+					use_shell = true,
+					hidden = false,
+				},
+				templates = {
+					"builtin",
+					"user.ansible",
+					"user.jenkins",
+					"user.terraform",
+					"user.infrastructure",
+				},
+			})
+			require("overseer").enable_dap()
+		end,
+	},
+	{
 		"nvim-neotest/neotest",
 		dependencies = {
 			"nvim-neotest/nvim-nio",
@@ -11,6 +32,13 @@ return {
 		},
 		config = function()
 			require("neotest").setup({
+				consumers = {
+					overseer = require("neotest.consumers.overseer"),
+				},
+				overseer = {
+					enabled = true,
+					force_default = true,
+				},
 				adapters = {
 					require("neotest-golang")({
 						dap = { justMyCode = false },
