@@ -1,6 +1,16 @@
 local o = vim.opt
 local g = vim.g
 o.cmdheight = 0
+o.ignorecase = true
+o.infercase = true
+o.smartcase = true
+o.shell = "fish"
+o.pumblend = 14
+o.winblend = 13
+o.winborder = nil
+o.splitbelow = true
+o.splitright = true
+
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
 o.autowrite = true
@@ -38,3 +48,4 @@ g.loaded_matchit = 1
 -- g.loaded_matchparen = 1
 g.loaded_netrw = 1
 g.loaded_netrwPlugin = 1
+g.mapleader = " "

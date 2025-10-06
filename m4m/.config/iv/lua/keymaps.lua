@@ -68,6 +68,7 @@ n("<tab>", "<CMD>lua vim.diagnostic.goto_next()<CR>", { silent = true, desc = "N
 n("<s-tab>", "<CMD>lua vim.diagnostic.goto_prev()<CR>", { silent = true, desc = "Prev diagnostic" })
 v("<tab>", "<CMD>lua vim.diagnostic.goto_next()<CR>", { silent = true, desc = "Next diagnostic" })
 v("<s-tab>", "<CMD>lua vim.diagnostic.goto_prev()<CR>", { silent = true, desc = "Prev diagnostic" })
+n("<space><cr>", "<CMD>cd %:p:h<CR>", { silent = true, desc = "Line diagnostic" })
 n("<space>ld", "<CMD>lua vim.diagnostic.open_float()<CR>", { silent = true, desc = "Line diagnostic" })
 n("<space>lD", "<CMD>lua vim.diagnostic.show()<CR>", { silent = true, desc = "Show line diagnostic" })
 

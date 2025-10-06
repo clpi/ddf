@@ -1,14 +1,13 @@
 return {
 	{
-		"clpi/down.nvim",
+		dir = "~/clp/down.nvim",
 		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 			"nvim-telescope/telescope.nvim",
 		},
 		lazy = false,
 		opts = {
+			lsp = {},
 			workspace = {
 				default = "wiki",
 				workspaces = {

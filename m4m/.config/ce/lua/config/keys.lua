@@ -58,6 +58,7 @@ m({ "c", "i" }, "<c-a>", "<home>", { silent = true, nowait = true, noremap = tru
 m({ "c", "i" }, "<c-e>", "<end>", { silent = true, nowait = true, noremap = true })
 m({ "c", "i" }, "<c-f>", "<right>", { silent = true, nowait = true, noremap = true })
 m({ "c", "i" }, "<c-b>", "<left>", { silent = true, nowait = true, noremap = true })
+m("n", "<space><CR>", "<CMD>cd %:p:h<CR>", { silent = true, desc = "Set CWD to file" })
 
 n("H", "<CMD>bp<CR>", { silent = true })
 n("L", "<CMD>bn<CR>", { silent = true })
@@ -104,12 +105,15 @@ n("<space>vL", "<CMD>e ~/.config/ce/lua/lsp.lua<CR>", { silent = true, desc = "l
 n("<space>vv", "<CMD>Telescope find_files cwd=~/.config/ce<CR>", { silent = true, desc = "find" })
 n("<space>vf", "<CMD>Telescope find_files cwd=~/.config/ce<CR>", { silent = true, desc = "find" })
 n("<space>vg", "<CMD>Telescope live_grep cwd=~/.config/ce<CR>", { silent = true, desc = "grep" })
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+-- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
+-- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+-- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
+-- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.cmd([[
   nm 0 ^
   nm <space>vi <CMD>e ~/.config/ce/init.lua<CR>
 ]])
 vim.keymap.set("n", "<space>e", "<CMD>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
+vim.cmd([[
+nno <space>e <CMD>NvimTreeToggle<CR>
+]])

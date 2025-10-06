@@ -1,6 +1,9 @@
 return {
 	-- { "b0o/incline.nvim", opts = {} },
 	{ "RRethy/nvim-treesitter-endwise" },
+	{ "folke/sidekick.nvim", opts = {} },
+
+	{ "JoosepAlviste/nvim-ts-context-commentstring", opts = {} },
 	{ "m-demare/hlargs.nvim" },
 	{
 		"nvim-lualine/lualine.nvim",

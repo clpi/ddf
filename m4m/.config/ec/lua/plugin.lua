@@ -1,5 +1,6 @@
 local add, now, later = MiniDeps.add, MiniDeps.now, MiniDeps.later
 vim.opt.swapfile = false
+vim.keymap.set("n", "<space><CR>", "<CMD>cd %:p:h<CR>", { desc = "cd to file dir" })
 
 add({
   source="MeanderingProgrammer/render-markdown.nvim", 
@@ -16,8 +17,16 @@ add({
 		"mason-org/mason-lspconfig.nvim",
 	},
 })
+-- add("sourcegraph/cody.nvim")
+add({ source = "clpi/down.nvim", depends = { "nvim-lua/plenary.nvim", "MunifTanjim/nui.nvim" } })
 add("github/copilot.vim")
+add("folke/lazydev.nvim")
+add("folke/ts-comments.nvim")
+add("folke/todo-comments.nvim")
+add("numToStr/Comment.nvim")
+add("nvim-lua/plenary.nvim")
 add("folke/neoconf.nvim")
+add("b0o/SchemaStore.nvim")
 add("m-demare/hlargs.nvim")
 add({ source = "RRethy/nvim-treesitter-endwise", depends = { "nvim-treesitter/nvim-treesitter" } })
 add("akinsho/toggleterm.nvim")
@@ -42,7 +51,6 @@ add({
 	source = "olimorris/codecompanion.nvim",
 	depends = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
 })
-add("nvim-mini/mini-git")
 add("MunifTanjim/nui.nvim")
 add({
 	source = "yetone/avante.nvim",
@@ -53,47 +61,13 @@ add({
 	},
 })
 
-add("nvim-mini/mini.colors")
-add("nvim-mini/mini.basics")
-add("nvim-mini/mini.comment")
-add("nvim-mini/mini.hues")
-add("nvim-mini/mini.test")
-add("nvim-mini/mini.visits")
-add("nvim-mini/mini.sessions")
-add("nvim-mini/mini.notify")
-add("nvim-mini/mini.map")
-add("nvim-mini/mini.keymap")
-add("nvim-mini/mini.splitjoin")
-add("nvim-mini/mini.operators")
-add("nvim-mini/mini.move")
-add("folke/todo-comments.nvim")
-add("folke/lazydev.nvim")
-add("folke/ts-comments.nvim")
-add("nvim-mini/mini.jump")
-add("nvim-mini/mini.jump2d")
-add("nvim-mini/mini.fuzzy")
-add("rachartier/tiny-inline-diagnostic.nvim")
-add("nvim-mini/mini.extra")
-add("nvim-mini/mini.trailspace")
-add("nvim-mini/mini.diff")
-add("nvim-mini/mini.ai")
-add("nvim-mini/mini.align")
-add("nvim-mini/mini.bracketed")
-add("nvim-mini/mini.animate")
-add("nvim-mini/mini.indentscope")
-add("nvim-mini/mini.pick")
-add("nvim-mini/mini.files")
--- add  "nvim-mini/mini.colors"
-add("nvim-mini/mini.hipatterns")
-add("nvim-mini/mini.bufremove")
-add("nvim-mini/mini.clue")
-add("nvim-mini/mini.misc")
-add({ source = "nvim-mini/mini.completion", depends = { "nvim-mini/mini.icons", "nvim-mini/mini.snippets" } })
-add("nvim-mini/mini.cursorword")
-add("nvim-mini/mini.statusline")
+add("nvim-mini/mini.nvim")
+add({ source = "folke/sidekick.nvim" })
 -- add  "nvim-treesitter/nvim-treesitter-context"
 -- add  "nvim-treesitter/nvim-treesitter-textobjects"
 
+add "ray-x/go.nvim"
+add { source = "sourcegraph/amp.nvim" }
 add("nvim-mini/mini.starter")
 add("nvim-mini/mini.snippets")
 add("nvim-mini/mini.surround")
@@ -112,6 +86,27 @@ add({
 	source = "nvim-treesitter/nvim-treesitter",
 })
 
+local ss = require("schemastore")
+vim.lsp.config("jsonls", {
+  settings = {
+    json = {
+      schemas = ss.json.schemas(),
+      validate = { enable = true },
+    },
+  },
+})
+vim.lsp.config("yamls", {
+  settings = {
+    yaml = {
+      schemaStore = {
+        enable = true,
+        url = "https://www.schemastore.org/api/json/catalog.json",
+      },
+      schemas = ss.yaml.schemas(),
+    },
+  },
+})
+
 require("nvim-treesitter.configs").setup({
 	highlight = {
 		enable = true,
@@ -122,6 +117,10 @@ require("nvim-treesitter.configs").setup({
 	ensure_installed = {
 		"lua",
 	},
+})
+require("amp").setup({
+  auto_start = true,
+  log_level = "info"
 })
 -- require "treesitter-context".setup()
 require("mini.operators").setup({})
@@ -359,8 +358,8 @@ require("conform").setup()
 require("overseer").setup()
 require("aerial").setup()
 require("mini.splitjoin").setup()
--- require("mini.pairs").setup()
-require("nvim-autopairs").setup()
+require("mini.pairs").setup()
+--- require("nvim-autopairs").setup()
 require("claude-code").setup()
 require("avante").setup()
 require("mini.sessions").setup()
@@ -380,6 +379,17 @@ require("grug-far").setup()
 require("nvim-ts-autotag").setup()
 require("mini.basics").setup()
 require("mini.extra").setup()
+require("down").setup({
+  workspace = {
+    workspaces = {
+      notes = "~/notes",
+      wiki = "~/wiki"
+    },
+    default = "wiki"
+  }
+})
+-- require("cody").setup({
+-- })
 require("codecompanion").setup()
 require("mini.misc").setup()
 -- require("codeium").setup()

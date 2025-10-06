@@ -3,11 +3,13 @@ local g = vim.g
 
 o.hlsearch = true
 o.cursorline = true
+o.swapfile = false
+o.backup = false
 o.splitbelow = true
 o.splitright = true
 o.pumblend = 10
 o.winblend = 10
-o.autochdir = true
+o.autochdir = false
 o.signcolumn = "yes"
 o.incsearch = true
 

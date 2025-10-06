@@ -1,6 +1,7 @@
 return {
 	{ "lukas-reineke/headlines.nvim", opts = {} },
 	{
+		enabled = false,
 		"clpi/down.nvim",
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",

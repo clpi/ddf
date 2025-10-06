@@ -1,5 +1,7 @@
+vim.keymap.set("n", ",e", "<CMD>NvimTreeToggle<CR>", { desc = "Toggle file explorer" })
 vim.api.nvim_create_augroup("DapGroup", { clear = true })
-
+vim.keymap.set("n", "<space>.", "<CMD>so %<CR>", { desc = "Source current file" })
+vim.keymap.set("n", "<space><CR>", "<CMD>cd %:p:h<CR>", { desc = "Change directory to current file" })
 local function navigate(args)
 	local buffer = args.buf
 
@@ -33,6 +35,7 @@ end
 return {
 
 	{ "RRethy/nvim-treesitter-endwise", dependencies = { "nvim-treesitter/nvim-treesitter" } },
+	{ "folke/sidekick.nvim", opts = {} },
 	{
 		"rcarriga/nvim-dap-ui",
 		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },

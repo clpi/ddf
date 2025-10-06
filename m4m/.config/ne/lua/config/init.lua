@@ -1,4 +1,6 @@
+vim.cmd.filetype("plugin indent on")
 require("config.autocmd")
 require("config.abbrev")
 require("config.keymap")
 require("config.opts")
+require("config.ui")
