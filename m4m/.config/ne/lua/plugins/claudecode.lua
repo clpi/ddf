@@ -1,0 +1,5 @@
+return {
+  window = {
+    position = "float"
+  }
+}

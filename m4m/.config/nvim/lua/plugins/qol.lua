@@ -4,7 +4,7 @@ return {
 	-- { "nvim-mini/mini.files", version = false, opts = {} },
 	-- { "nvim-mini/mini.pick", version = false, opts = {} },
 	-- { "nvim-mini/mini.fuzzy", version = false, opts = {} },
-	-- { "nvim-mini/mini.animate", version = false, opts = {} },
+	{ "nvim-mini/mini.animate", version = false, opts = {} },
 	-- { "nvim-mini/mini.icons", version = false, opts = {} },
 	-- { "nvim-mini/mini.indentscope", version = false, opts = {} },
 	-- { "nvim-mini/mini.surround", version = false, opts = {} },
@@ -61,7 +61,7 @@ return {
 			picker = { enabled = true },
 			quickfile = { enabled = true },
 			scope = { enabled = true },
-			scroll = { enabled = true },
+			scroll = { enabled = false },
 			statuscolumn = { enabled = true },
 			words = { enabled = true },
 			styles = {

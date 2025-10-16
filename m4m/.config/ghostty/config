@@ -4,7 +4,7 @@ foreground = ffffff
 keybind = cmd+d=new_split:right
 
 font-family = ZedMono Nerd Font
-font-size = 11
+font-size = 10.5
 
 cursor-style = bar
 background-opacity = 0.95

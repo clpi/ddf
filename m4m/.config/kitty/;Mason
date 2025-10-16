@@ -1,0 +1,26 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://localhost:11434",
+      },
+      "models": {
+        "qwen3-coder:480b-cloud": {
+          "reasoning": true,
+          "tool_call": true
+        }
+      }
+    }
+  },
+  "mcp": {
+    "web-search-prime": {
+      "type": "remote",
+      "url": "https://api.z.ai/api/mcp/web_search_prime/mcp",
+      "headers": {
+        "Authorization": "Bearer 9cb188d2c8e14db8a9de3af26a307205.ghT1dVDcoKmSsWqq"
+      }
+    }
+  }
+}

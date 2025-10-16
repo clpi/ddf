@@ -1,6 +1,9 @@
 local o = vim.opt
 local g = vim.g
 o.cmdheight = 0
+o.numberwidth=1
+-- o.signcolumn = 'no'
+
 o.ignorecase = true
 o.infercase = true
 o.smartcase = true
@@ -21,7 +24,7 @@ o.confirm = false
 o.warn = false
 o.clipboard = "unnamedplus"
 g.maplocalleader = ","
-o.signcolumn = "yes:1"
+o.signcolumn = "yes"
 o.winborder = nil
 o.expandtab = true
 o.autoindent = true
@@ -41,7 +44,7 @@ o.swapfile = false
 o.undodir = os.getenv("HOME") .. "/.vim/undodir"
 o.incsearch = true
 o.shiftround = true
-o.showtabline = 3
+o.showtabline = 2
 o.laststatus = 3
 g.copilot_no_tab_map = false
 g.loaded_matchit = 1

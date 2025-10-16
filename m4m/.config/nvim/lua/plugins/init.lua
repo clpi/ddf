@@ -1,6 +1,7 @@
 local api = vim.api
 
 return {
+
 	{
 		"ThePrimeagen/refactoring.nvim",
 		opts = {},
@@ -11,7 +12,7 @@ return {
 	},
 	{ "j-hui/fidget.nvim", opts = {} },
 	{ "smjonas/inc-rename.nvim", opts = {} },
-
+	{ "ckipp01/nvim-jenkinsfile-linter", dependencies = { "nvim-lua/plenary.nvim" } },
 	{
 		"folke/noice.nvim",
 		enabled = true,

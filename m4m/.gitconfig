@@ -1,0 +1,58 @@
+[user]
+	email = chris.p@swirldslabs.com
+	name = Chris Pecunies
+	signingkey = B752556A7192A6E9
+[core]
+
+  pager = delta
+  editor = nvim
+	excludesFile = **.vtcode/,**.idea/**,.DS_Store,**.vscode/**,**.history/**,**.swp,**.swo,**.claude/,**.cursor/,**.codex/,**.gemini/,**rules,**AGENTS.md,**.qoder/,**CLAUDE.md
+[interactive]
+  diffFilter = delta --color-only
+[help]
+  autocorrect = prompt
+[color]
+  ui = true
+[delta]
+  line-numbers = true
+  side-by-side = true
+  navigate = true
+  dark = true
+[merge]
+  keepbackup = false
+  tool = meld
+  conflictStyle = zdiff3
+[log]
+  date = iso
+[push]
+  followtags = true
+[commit]
+  gpgsign = true
+	template = /Users/clp/.stCommitMsg
+[rebase]
+  updateRefs = true
+  autosquash = true
+  autostash = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[rerere]
+  enabled = true
+[diff]
+  colorMoved = default
+  tool = difftastic
+  context = 10
+  algorithm = histogram
+[transfer]
+  fsckobjects = true
+[fetch]
+  prune = true
+  fsckobjects = true
+[receive]
+  fsckobjects = true
+[extensions]
+  worktreeConfig = true
+[tag]
+	forceSignAnnotated = true

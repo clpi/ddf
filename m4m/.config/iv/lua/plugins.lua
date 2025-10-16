@@ -866,13 +866,6 @@ return {
 						},
 						treesitter = { "lsp" },
 						padding = { 0, 0 },
-						components = {
-							kind_icon = {
-								text = function(c)
-									return " " .. c.kind_icon .. c.icon_gap .. " "
-								end,
-							},
-						},
 					},
 				},
 				-- By default, you may press `<c-space>` to show the documentation.

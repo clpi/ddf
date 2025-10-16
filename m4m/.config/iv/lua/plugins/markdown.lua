@@ -1,18 +1,12 @@
 return {
 	{
 		"clpi/down.nvim",
-		dependencies = {
-			"MunifTanjim/nui.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-telescope/telescope.nvim",
-		},
 		lazy = false,
 		opts = {
 			workspace = {
-				default = "wiki",
+				default = "icloud",
 				workspaces = {
-					notes = "~/notes",
+					icloud = "~/Library/Mobile Documents/com~apple~CloudDocs/wiki",
 					wiki = "~/wiki",
 				},
 			},
@@ -34,5 +28,6 @@ return {
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {},
+		ft = { "markdown", "Avante", "code-companion", "copilot-chat", "sidekick" },
 	},
 }
